@@ -182,7 +182,7 @@ namespace DadsDayApp
                     // which has all kinds of issues with ansi coloring, timeouts,
                     // and a silent delay when starting the first time and doing
                     // a background `npm install` which can timeout during the install
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:5173");
                 }
             });
         }

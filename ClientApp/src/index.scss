@@ -1,10 +1,62 @@
+@import 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css';
+
 :root {
-  font: 16px / 1 sans-serif;
+  --blue: #444c6c;
+  --sand: #a7837b;
+  --adobe: #62342c;
+  --white: #d9d9d9;
+  --brown: #482c27;
+
+  font: 16px / 1 'Inika', serif;
 }
+
 html {
   height: 100%;
 }
 body {
   margin: 0;
   min-height: 100%;
+  background-color: var(--sand);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: var(--blue);
+  height: 4rem;
+}
+
+nav {
+  background-color: var(--blue);
+  color: var(--sand);
+}
+
+nav li {
+  background-color: var(--brown);
+}
+
+section {
+  background-color: var(--white);
+  color: black;
+  font-size: 1rem;
+}
+
+main {
+  background-color: var(--brown);
+  font-size: 2rem;
+  color: var(--sand);
+}
+
+footer {
+  background-color: var(--blue);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
 }
