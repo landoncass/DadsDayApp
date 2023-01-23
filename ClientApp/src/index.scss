@@ -24,6 +24,13 @@ $card-content-padding: 1rem;
 
 $card-radius: 1rem;
 
+.card {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 80%;
+}
+
 html {
   height: 100%;
 }
@@ -40,24 +47,9 @@ body {
   flex-direction: column;
 }
 
-header {
-  background-color: var(--blue);
-  height: 4rem;
-}
-
-nav {
-  background-color: var(--blue);
-  color: var(--sand);
-}
-
-nav li {
-  background-color: var(--brown);
-}
-
-section {
-  background-color: var(--white);
-  color: black;
-  font-size: 1rem;
+.navbar {
+  display: flex;
+  background-color: $blue;
 }
 
 main {

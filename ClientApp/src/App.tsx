@@ -1,5 +1,5 @@
 import React from 'react'
-import { AllDaysOut } from './pages/Landing'
+import { AllDaysOut } from './pages/AllDaysOut'
 import logo2 from './images/Logo2.png'
 
 export function App() {
@@ -7,7 +7,7 @@ export function App() {
     <div>
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <img src={logo2} />
+          <img src={logo2} width="auto" />
           <a
             role="button"
             className="navbar-burger"

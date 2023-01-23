@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 
-export function AllDaysOut() {
+export function PersonalDayOut() {
   return (
     <main>
-      <h1>See what other dads have done recently: </h1>
+      <h1>Here's a list of some of your favorite Days Out: </h1>
       <input type="text" placeholder="Search" />
       <ul>
         <li>
@@ -63,7 +63,9 @@ export function AllDaysOut() {
             </p>
           </div>
         </li>
-
+      </ul>
+      <h1>Here are your most recent Days Out: </h1>
+      <ul>
         <li>
           <div className="box">
             <p>
@@ -99,7 +101,6 @@ export function AllDaysOut() {
           </div>
         </li>
       </ul>
-      {/* <AllDaysOut /> */}
     </main>
   )
 }

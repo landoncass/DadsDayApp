@@ -6,8 +6,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { App } from './App'
 import './index.scss'
 
-import { AllDaysOut } from './pages/Landing'
-import { PersonalDayOut } from './pages/Personal'
+import { AllDaysOut } from './pages/AllDaysOut'
+import { PersonalDayOut } from './pages/PersonalDayOut'
 
 const queryClient = new QueryClient()
 
