@@ -1,6 +1,19 @@
 import React, { useState } from 'react'
+import { useQuery } from 'react-query'
+import { DayOutType } from '../types'
 
 export function AllDaysOut() {
+  // const { data: daysOut = [] } = useQuery<DayOutType[]>(
+  //   'daysOut',
+  //   async function () {
+  //     const response = await fetch('/api/DaysOut')
+
+  //     return response.json()
+  //   }
+  // )
+
+  // console.log({ daysOut })
+
   return (
     <main>
       <h1>See what other dads have done recently: </h1>

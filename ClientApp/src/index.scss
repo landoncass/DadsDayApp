@@ -27,8 +27,6 @@ $card-radius: 1rem;
 .card {
   display: flex;
   justify-content: center;
-  align-content: center;
-  width: 80%;
 }
 
 html {
@@ -49,7 +47,17 @@ body {
 
 .navbar {
   display: flex;
+  flex-wrap: wrap;
   background-color: $blue;
+  color: $white;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.navbar > * {
+  flex: 1 1 200px;
 }
 
 main {
