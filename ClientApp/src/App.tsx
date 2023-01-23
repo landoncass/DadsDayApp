@@ -1,118 +1,33 @@
 import React from 'react'
-import { AllDaysOut } from './pages/Landing page'
-import logo from './images/Logo.png'
+import { AllDaysOut } from './pages/Landing'
+import logo2 from './images/Logo2.png'
 
 export function App() {
   return (
     <div>
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <img src={logo} />
+          <img src={logo2} />
+          <a
+            role="button"
+            className="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navbarBasicExample"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
         </div>
-
-        <div className="navbar-menu">
+        <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
             <a className="navbar-item">Home</a>
           </div>
         </div>
       </nav>
 
-      <body>
-        <main>
-          <h1>See what other dads have done recently: </h1>
-          <input type="text" placeholder="Search" />
-          <ul>
-            <li>
-              <div className="box">
-                <p>
-                  <strong>Where’d you go:</strong> Skyzone
-                </p>
-                <p>
-                  <strong>When:</strong> 12/2/2022
-                </p>
-                <p>
-                  <strong>How was it:</strong> Benny really liked jumping on the
-                  trampoline with the ball. I hurt my knee, but we’ll ...
-                </p>
-                <p>
-                  <strong>User:</strong> Greg
-                </p>
-              </div>
-            </li>
-
-            <li>
-              <div className="box">
-                <p>
-                  <strong>Where’d you go:</strong> Skyzone
-                </p>
-                <p>
-                  <strong>When:</strong> 12/2/2022
-                </p>
-                <p>
-                  <strong>How was it:</strong> Benny really liked jumping on the
-                  trampoline with the ball. I hurt my knee, but we’ll ...
-                </p>
-                <p>
-                  <strong>User:</strong> Greg
-                </p>
-              </div>
-            </li>
-            <li>
-              <div className="box">
-                <p>
-                  <strong>Where’d you go:</strong> Skyzone
-                </p>
-                <p>
-                  <strong>When:</strong> 12/2/2022
-                </p>
-                <p>
-                  <strong>How was it:</strong> Benny really liked jumping on the
-                  trampoline with the ball. I hurt my knee, but we’ll ...
-                </p>
-                <p>
-                  <strong>User:</strong> Greg
-                </p>
-              </div>
-            </li>
-
-            <li>
-              <div className="box">
-                <p>
-                  <strong>Where’d you go:</strong> Skyzone
-                </p>
-                <p>
-                  <strong>When:</strong> 12/2/2022
-                </p>
-                <p>
-                  <strong>How was it:</strong> Benny really liked jumping on the
-                  trampoline with the ball. I hurt my knee, but we’ll ...
-                </p>
-                <p>
-                  <strong>User:</strong> Greg
-                </p>
-              </div>
-            </li>
-            <li>
-              <div className="box">
-                <p>
-                  <strong>Where’d you go:</strong> Skyzone
-                </p>
-                <p>
-                  <strong>When:</strong> 12/2/2022
-                </p>
-                <p>
-                  <strong>How was it:</strong> Benny really liked jumping on the
-                  trampoline with the ball. I hurt my knee, but we’ll ...
-                </p>
-                <p>
-                  <strong>User:</strong> Greg
-                </p>
-              </div>
-            </li>
-          </ul>
-          {/* <AllDaysOut /> */}
-        </main>
-      </body>
+      <body>{AllDaysOut()}</body>
       <footer>
         <p>Built with SDG in St Petersburg, Florida.</p>
       </footer>

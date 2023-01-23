@@ -1,4 +1,6 @@
-@import 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css';
+@charset "utf-8";
+@import '../node_modules/bulma/bulma.sass';
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 
 :root {
   --blue: #444c6c;
@@ -10,9 +12,22 @@
   font: 16px / 1 'Inika', serif;
 }
 
+$blue: #444c6c;
+$sand: #a7837b;
+$adobe: #62342c;
+$white: #d9d9d9;
+$brown: #482c27;
+
+$background: $sand;
+
+$card-content-padding: 1rem;
+
+$card-radius: 1rem;
+
 html {
   height: 100%;
 }
+
 body {
   margin: 0;
   min-height: 100%;
