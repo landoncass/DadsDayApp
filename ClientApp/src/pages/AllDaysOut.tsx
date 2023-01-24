@@ -16,9 +16,13 @@ export function AllDaysOut() {
 
   return (
     <main>
-      <h1>See what other dads have done recently: </h1>
-      <input type="text" placeholder="Search" />
-      <ul>
+      <div className="pageHeader">
+        <h1 align="center">See what other dads have done recently: </h1>
+        <p>
+          <input type="text" placeholder="Search" />
+        </p>
+      </div>
+      <ul className="DaysOutList">
         <li>
           <div className="card">
             <div className="card-content">

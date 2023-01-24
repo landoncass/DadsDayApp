@@ -6,12 +6,12 @@ export function App() {
   return (
     <div>
       <header>
-        <img src={logo2} height="auto" />
+        <img src={logo2} height="auto" align="center" />
       </header>
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <a className="navbar-item">
-            <img src={logo2} height="auto" />
+            <img src={logo2} />
           </a>
           <a
             role="button"
@@ -26,11 +26,9 @@ export function App() {
           </a>
         </div>
         <div id="navbarBasicExample" className="navbar-menu">
-          <div className="navbar-start">
-            <a className="navbar-item">Home</a>
-
-            <a className="navbar-item">Documentation</a>
-          </div>
+          <a className="navbar-item">Home</a>
+          <a className="navbar-item">Your Days Out</a>
+          <a className="navbar-item">Add a Day Out</a>
         </div>
       </nav>
       <body>{AllDaysOut()}</body>
