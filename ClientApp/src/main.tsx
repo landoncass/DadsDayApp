@@ -1,7 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link,
+} from 'react-router-dom'
 
 import { App } from './App'
 import './index.scss'
@@ -17,17 +23,16 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: '/alldaysout',
+    path: '/AllDaysOut',
     element: <AllDaysOut />,
   },
   {
-    path: '/yourdaysout',
+    path: '/PersonalDayOut',
     element: <PersonalDayOut />,
   },
 ])
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  // <RouterProvider router={router} />
+  <React.StrictMode>{<App />}</React.StrictMode>
 )

@@ -13,25 +13,13 @@ export function App() {
           <a className="navbar-item">
             <img src={logo2} />
           </a>
-          <a
-            role="button"
-            className="navbar-burger"
-            aria-label="menu"
-            aria-expanded="false"
-            data-target="navbarBasicExample"
-          >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-        <div id="navbarBasicExample" className="navbar-menu">
+
           <a className="navbar-item">Home</a>
           <a className="navbar-item">Your Days Out</a>
           <a className="navbar-item">Add a Day Out</a>
         </div>
       </nav>
-      <body>{AllDaysOut()}</body>
+      <body className="componentView">{AllDaysOut()}</body>
       <footer>
         <p>Built with SDG in St Petersburg, Florida.</p>
       </footer>

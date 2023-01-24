@@ -15,12 +15,10 @@ export function AllDaysOut() {
   // console.log({ daysOut })
 
   return (
-    <main>
+    <div className="componentPage">
       <div className="pageHeader">
         <h1 align="center">See what other dads have done recently: </h1>
-        <p>
-          <input type="text" placeholder="Search" />
-        </p>
+        <input type="text" placeholder="Search" />
       </div>
       <ul className="DaysOutList">
         <li>
@@ -137,6 +135,6 @@ export function AllDaysOut() {
         </li>
       </ul>
       {/* <AllDaysOut /> */}
-    </main>
+    </div>
   )
 }

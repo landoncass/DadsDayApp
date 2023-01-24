@@ -30,17 +30,14 @@ body {
 
 .DaysOutList {
   display: flex;
-  align-content: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 2rem;
 }
 
 .DayOutList li {
   margin: 1rem;
-}
-
-.card {
-  $card-media-margin: 1.5rem;
 }
 
 .navbar-burger {
@@ -56,8 +53,10 @@ body {
 
 .pageHeader {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-wrap: wrap;
+  padding: 2rem;
+  font-size: 2rem;
 }
 header {
   background-color: $blue;
@@ -75,7 +74,6 @@ header {
   display: flex;
   flex-wrap: wrap;
   background-color: $blue;
-  color: $white;
   position: fixed;
   width: 100%;
   left: 0;
@@ -86,10 +84,19 @@ header {
   flex: 1 1 200px;
 }
 
-main {
+.componentPage {
   background-color: var(--brown);
-  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1rem;
   color: var(--sand);
+  width: 90%;
+}
+
+.componentView {
+  display: flex;
+  justify-content: center;
 }
 
 footer {
