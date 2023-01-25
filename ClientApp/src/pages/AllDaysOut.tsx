@@ -4,10 +4,15 @@ import { DayOutType } from '../types'
 import { SingleDayOutFromList } from '../components/SingleDayOutFromList'
 
 export function AllDaysOut() {
+  const [filterText, setFilterText] = useState('')
   const { data: daysOut = [] } = useQuery<DayOutType[]>(
-    'daysOut',
+    ['daysOut', filterText],
     async function () {
-      const response = await fetch('/api/DaysOut')
+      const response = await fetch(
+        filterText.length === 0
+          ? '/api/DaysOut'
+          : `/api/DaysOut?filter=${filterText}`
+      )
 
       return response.json()
     }
@@ -17,7 +22,14 @@ export function AllDaysOut() {
     <div className="componentPage">
       <div className="pageHeader">
         <h1 align="center">See what other dads have done recently: </h1>
-        <input type="text" placeholder="Search" />
+        <input
+          type="text"
+          placeholder="Search"
+          value={filterText}
+          onChange={function (event) {
+            setFilterText(event.target.value)
+          }}
+        />
       </div>
       <ul className="DaysOutList">
         {daysOut.map(function (dayOut) {

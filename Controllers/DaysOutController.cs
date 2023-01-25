@@ -31,11 +31,19 @@ namespace DadsDayApp.Controllers
         // Returns a list of all your DaysOut
         //
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DayOut>>> GetDaysOut()
+        public async Task<ActionResult<IEnumerable<DayOut>>> GetDaysOut(string filter)
         {
             // Uses the database context in `_context` to request all of the DaysOut, sort
             // them by row id and return them as a JSON array.
-            return await _context.DaysOut.OrderBy(row => row.Id).ToListAsync();
+            if (filter == null)
+            {
+                return await _context.DaysOut.OrderBy(row => row.Id).ToListAsync();
+            }
+            else
+            {
+                return await _context.DaysOut.OrderBy(row => row.Id).Where(dayOut => dayOut.Location.ToLower().Contains(filter.ToLower())).ToListAsync();
+            }
+
         }
 
         // GET: api/DaysOut/5
