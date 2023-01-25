@@ -1,8 +1,4 @@
 {
   "name": "DadsDayApp",
-  "private": "true",
-  "dependencies": {
-    "bulma": "^0.9.4",
-    "react-query": "^3.39.2"
-  }
+  "private": "true"
 }

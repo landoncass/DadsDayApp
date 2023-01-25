@@ -2,17 +2,21 @@ import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { DayOutType } from '../types'
 
+// function daysOutList() {
+//   const [daysOut, setDaysOut] = useState([])
+
+//   return ()
+// }
+
 export function AllDaysOut() {
-  // const { data: daysOut = [] } = useQuery<DayOutType[]>(
-  //   'daysOut',
-  //   async function () {
-  //     const response = await fetch('/api/DaysOut')
+  const { data: daysOut = [] } = useQuery<DayOutType[]>(
+    'daysOut',
+    async function () {
+      const response = await fetch('/api/DaysOut')
 
-  //     return response.json()
-  //   }
-  // )
-
-  // console.log({ daysOut })
+      return response.json()
+    }
+  )
 
   return (
     <div className="componentPage">
@@ -21,120 +25,33 @@ export function AllDaysOut() {
         <input type="text" placeholder="Search" />
       </div>
       <ul className="DaysOutList">
-        <li>
-          <div className="card">
-            <div className="card-content">
-              <div className="content">
-                <p>
-                  <strong>Where’d you go:</strong> Skyzone
-                </p>
-                <p>
-                  <strong>When:</strong> 12/2/2022
-                </p>
-                <p>
-                  <strong>How was it:</strong> Benny really liked jumping on the
-                  trampoline with the ball. I hurt my knee, but we’ll ...
-                </p>
-                <p>
-                  <strong>User:</strong> Greg
-                </p>
-                <p>Read more</p>
+        {daysOut.map(function (dayOut) {
+          return (
+            <li key={dayOut.id}>
+              <div className="card">
+                <div className="card-content">
+                  <div className="content">
+                    <p>
+                      <strong>Where’d you go:</strong> {dayOut.location}
+                    </p>
+                    <p>
+                      <strong>When:</strong> {dayOut.date}
+                    </p>
+                    <p>
+                      <strong>How was it:</strong> {dayOut.description}
+                      ...
+                    </p>
+                    <p>
+                      <strong>User:</strong> {dayOut.user}
+                    </p>
+                    <p>Read more</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div className="card">
-            <div className="card-content">
-              <div className="content">
-                <p>
-                  <strong>Where’d you go:</strong> Skyzone
-                </p>
-                <p>
-                  <strong>When:</strong> 12/2/2022
-                </p>
-                <p>
-                  <strong>How was it:</strong> Benny really liked jumping on the
-                  trampoline with the ball. I hurt my knee, but we’ll ...
-                </p>
-                <p>
-                  <strong>User:</strong> Greg
-                </p>
-                <p>Read more</p>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div className="card">
-            <div className="card-content">
-              <div className="content">
-                <p>
-                  <strong>Where’d you go:</strong> Skyzone
-                </p>
-                <p>
-                  <strong>When:</strong> 12/2/2022
-                </p>
-                <p>
-                  <strong>How was it:</strong> Benny really liked jumping on the
-                  trampoline with the ball. I hurt my knee, but we’ll ...
-                </p>
-                <p>
-                  <strong>User:</strong> Greg
-                </p>
-                <p>Read more</p>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div className="card">
-            <div className="card-content">
-              <div className="content">
-                <p>
-                  <strong>Where’d you go:</strong> Skyzone
-                </p>
-                <p>
-                  <strong>When:</strong> 12/2/2022
-                </p>
-                <p>
-                  <strong>How was it:</strong> Benny really liked jumping on the
-                  trampoline with the ball. I hurt my knee, but we’ll ...
-                </p>
-                <p>
-                  <strong>User:</strong> Greg
-                </p>
-                <p>Read more</p>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div className="card">
-            <div className="card-content">
-              <div className="content">
-                <p>
-                  <strong>Where’d you go:</strong> Skyzone
-                </p>
-                <p>
-                  <strong>When:</strong> 12/2/2022
-                </p>
-                <p>
-                  <strong>How was it:</strong> Benny really liked jumping on the
-                  trampoline with the ball. I hurt my knee, but we’ll ...
-                </p>
-                <p>
-                  <strong>User:</strong> Greg
-                </p>
-                <p>Read more</p>
-              </div>
-            </div>
-          </div>
-        </li>
+            </li>
+          )
+        })}
       </ul>
-      {/* <AllDaysOut /> */}
     </div>
   )
 }

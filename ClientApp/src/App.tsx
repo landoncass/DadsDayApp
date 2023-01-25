@@ -1,6 +1,9 @@
 import React from 'react'
 import { AllDaysOut } from './pages/AllDaysOut'
 import logo2 from './images/Logo2.png'
+import { Route, Routes } from 'react-router-dom'
+import { PersonalDayOut } from './pages/PersonalDayOut'
+import { NewDayOut } from './pages/NewDayOut'
 
 export function App() {
   return (
@@ -19,7 +22,13 @@ export function App() {
           <a className="navbar-item">Add a Day Out</a>
         </div>
       </nav>
-      <body className="componentView">{AllDaysOut()}</body>
+      <div className="componentView">
+        <Routes>
+          <Route index element={<AllDaysOut />} />
+          <Route path="personal" element={<PersonalDayOut />} />
+          <Route path="newdayout" element={<NewDayOut />} />
+        </Routes>
+      </div>
       <footer>
         <p>Built with SDG in St Petersburg, Florida.</p>
       </footer>
