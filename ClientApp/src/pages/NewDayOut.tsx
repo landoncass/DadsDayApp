@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
+import { useNavigate } from 'react-router-dom'
 import { DayOutType } from '../types'
 
 async function submitNewDayOut(dayOutToCreate: DayOutType) {
@@ -12,6 +13,8 @@ async function submitNewDayOut(dayOutToCreate: DayOutType) {
   return response.json()
 }
 export function NewDayOut() {
+  let navigate = useNavigate()
+
   const [newDayOut, setNewDayOut] = useState<DayOutType>({
     id: undefined,
     location: '',
@@ -20,7 +23,11 @@ export function NewDayOut() {
     user: '',
   })
 
-  const createNewDayOut = useMutation(submitNewDayOut)
+  const createNewDayOut = useMutation(submitNewDayOut, {
+    onSuccess: function () {
+      navigate('/')
+    },
+  })
 
   async function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
