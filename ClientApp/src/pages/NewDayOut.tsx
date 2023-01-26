@@ -1,33 +1,86 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useMutation } from 'react-query'
+import { DayOutType } from '../types'
 
+async function submitNewDayOut(dayOutToCreate: DayOutType) {
+  const response = await fetch('/api/daysout', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(dayOutToCreate),
+  })
+
+  return response.json()
+}
 export function NewDayOut() {
+  const [newDayOut, setNewDayOut] = useState<DayOutType>({
+    id: undefined,
+    location: '',
+    date: '',
+    description: '',
+    user: '',
+  })
+
+  const createNewDayOut = useMutation(submitNewDayOut)
+
+  async function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    createNewDayOut.mutate(newDayOut)
+  }
+
+  function handleStringFieldChange(
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) {
+    const value = event.target.value
+    const fieldName = event.target.name
+
+    const updatedDayOut = { ...newDayOut, [fieldName]: value }
+
+    setNewDayOut(updatedDayOut)
+  }
+
   return (
-    <main className="page">
-      <nav>
-        <a href="/">
-          <i className="fa fa-home"></i>
-        </a>
-        <h2>Add a Day Out</h2>
-      </nav>
-      <form action="#">
+    <div className="componentPage">
+      <div className="pageHeader">
+        <h1 align="center">Add a Day Out</h1>
+      </div>
+      <form onSubmit={handleFormSubmit}>
         <p className="form-input">
-          <label htmlFor="name">Name</label>
-          <input type="text" name="name" />
+          <label htmlFor="location">Where'd you go?</label>
+          <input
+            type="text"
+            name="location"
+            value={newDayOut.location}
+            onChange={handleStringFieldChange}
+          />
         </p>
         <p className="form-input">
-          <label htmlFor="description">Description</label>
-          <textarea name="description"></textarea>
-          <span className="note">
-            Enter a brief description of the restaurant.
-          </span>
+          <label htmlFor="date">When did you go?</label>
+          <input
+            type="text"
+            name="date"
+            value={newDayOut.date}
+            onChange={handleStringFieldChange}
+          ></input>
         </p>
+
         <p className="form-input">
-          <label htmlFor="name">Address</label>
-          <textarea name="address"></textarea>
+          <label htmlFor="description">Leave a review</label>
+          <textarea
+            name="description"
+            value={newDayOut.description}
+            onChange={handleStringFieldChange}
+          ></textarea>
         </p>
+
         <p className="form-input">
-          <label htmlFor="name">Telephone</label>
-          <input type="tel" name="telephone" />
+          <label htmlFor="user">Your name</label>
+          <input
+            type="text"
+            name="user"
+            value={newDayOut.user}
+            onChange={handleStringFieldChange}
+          ></input>
         </p>
         <p className="form-input">
           <label htmlFor="picture">Picture</label>
@@ -37,6 +90,6 @@ export function NewDayOut() {
           <input type="submit" value="Submit" />
         </p>
       </form>
-    </main>
+    </div>
   )
 }
