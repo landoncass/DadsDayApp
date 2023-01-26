@@ -1,7 +1,7 @@
 import React from 'react'
 import { AllDaysOut } from './pages/AllDaysOut'
 import logo2 from './images/Logo2.png'
-import { Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes } from 'react-router-dom'
 import { PersonalDayOut } from './pages/PersonalDayOut'
 import { NewDayOut } from './pages/NewDayOut'
 
@@ -17,16 +17,23 @@ export function App() {
             <img src={logo2} />
           </a>
 
-          <a className="navbar-item">Home</a>
-          <a className="navbar-item">Your Days Out</a>
-          <a className="navbar-item">Add a Day Out</a>
+          <Link to="/">
+            <a className="navbar-item">Home</a>
+          </Link>
+          <Link to="/personal">
+            <a className="navbar-item">Your Days Out</a>
+          </Link>
+
+          <Link to="/new">
+            <a className="navbar-item">Add a Day Out</a>
+          </Link>
         </div>
       </nav>
       <div className="componentView">
         <Routes>
           <Route index element={<AllDaysOut />} />
           <Route path="personal" element={<PersonalDayOut />} />
-          <Route path="newdayout" element={<NewDayOut />} />
+          <Route path="new" element={<NewDayOut />} />
         </Routes>
       </div>
       <footer>

@@ -8,21 +8,6 @@ import './index.scss'
 
 const queryClient = new QueryClient()
 
-// const router = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <App />,
-//   },
-//   {
-//     path: '/AllDaysOut',
-//     element: <AllDaysOut />,
-//   },
-//   {
-//     path: '/PersonalDayOut',
-//     element: <PersonalDayOut />,
-//   },
-// ])
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
