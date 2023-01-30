@@ -108,3 +108,15 @@ footer {
   color: white;
   text-align: center;
 }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.label {
+  color: $sand;
+  font-size: 1.5rem;
+  align-items: center;
+}
