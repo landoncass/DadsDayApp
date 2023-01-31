@@ -56,17 +56,19 @@ export function NewDayOut() {
   }
 
   return (
-    <div className="componentPage">
+    <div className="newDay">
       <div className="pageHeader">
-        <h1 align="center">Add a Day Out</h1>
+        <h1 className="text-center">Add a Day Out</h1>
       </div>
       <form onSubmit={handleFormSubmit}>
-        <div className="field ">
+      {errorMessage ? <p className='form-error'>{errorMessage}</p> : null}
+      <div className="field" >
           <label className="label" htmlFor="location">
             Where'd you go?
           </label>
-          <div className="control">
+          <div className="control is-expanded">
             <input
+              className="input"
               type="text"
               name="location"
               value={newDayOut.location}
@@ -78,8 +80,9 @@ export function NewDayOut() {
           <label className="label" htmlFor="date">
             When did you go?
           </label>
-          <div className="control">
+          <div className="control is-expanded">
             <input
+              className="input"
               type="text"
               name="date"
               value={newDayOut.date}
@@ -92,8 +95,9 @@ export function NewDayOut() {
           <label className="label" htmlFor="description">
             Leave a review
           </label>
-          <div className="control">
+          <div className="control is-expanded">
             <textarea
+            className="input"
               name="description"
               value={newDayOut.description}
               onChange={handleStringFieldChange}
@@ -125,13 +129,15 @@ export function NewDayOut() {
         <br></br>
         <div className="field is-grouped">
           <div className="control">
-            <button className="button is-link">Submit</button>
+            <button className="button is-link" onClick={handleFormSubmit}>Submit</button>
           </div>
           <div className="control">
             <button className="button is-link is-light">Cancel</button>
           </div>
         </div>
-      </form>
-    </div>
+        </form>
+      </div>
+      
+      
   )
 }

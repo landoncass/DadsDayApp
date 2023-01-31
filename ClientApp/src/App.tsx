@@ -27,6 +27,7 @@ export function App() {
           <Link to="/new">
             <a className="navbar-item">Add a Day Out</a>
           </Link>
+          
         </div>
       </nav>
       <div className="componentView">
@@ -34,6 +35,7 @@ export function App() {
           <Route index element={<AllDaysOut />} />
           <Route path="personal" element={<PersonalDayOut />} />
           <Route path="new" element={<NewDayOut />} />
+          {/* <Route path="daysout/:id" element={<DayOut />} /> */}
         </Routes>
       </div>
       <footer>

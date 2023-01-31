@@ -13,3 +13,10 @@ export type APIError = {
   traceId: string
   type: string
 }
+
+const NullDayOut: DayOutType = {
+  location: '',
+  date: '',
+  description: '',
+  user: ''
+}
