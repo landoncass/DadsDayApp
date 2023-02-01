@@ -31,12 +31,24 @@ export function DayOut() {
 
   return (
     <div className="componentPage">
-      <div className="pageHeader"><h2>{dayout.location}</h2></div>
-      <p>
+      
+        <section className="section is-large has-background-light m-auto">
+  
+        <h1 className="title">
+          {dayout.location}
+        </h1>
+      
+      <h2 className="subtitle">
       {dayout.date}
-    </p><p>
+      
+      <p>
         {dayout.description}
       </p>
-      <p>{dayout.user}</p></div>
-  ) 
+      <p>
+        {dayout.user}
+      </p>
+      </h2>
+      </section>
+      </div>
+  )
 }
