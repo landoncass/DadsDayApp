@@ -1,5 +1,5 @@
 export type DayOutType = {
-  id?: number
+  id?: string | undefined
   location: string
   date: string
   description: string

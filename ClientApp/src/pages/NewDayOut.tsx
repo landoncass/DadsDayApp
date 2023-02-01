@@ -68,7 +68,9 @@ export function NewDayOut() {
           </label>
           <div className="control is-expanded">
             <input
+            
               className="input"
+              required
               type="text"
               name="location"
               value={newDayOut.location}
@@ -109,8 +111,9 @@ export function NewDayOut() {
           <label className="label" htmlFor="user">
             Your name
           </label>
-          <div className="control">
+          <div className="control is-expanded">
             <input
+            className="input"
               type="text"
               name="user"
               value={newDayOut.user}
@@ -129,7 +132,7 @@ export function NewDayOut() {
         <br></br>
         <div className="field is-grouped">
           <div className="control">
-            <button className="button is-link" onClick={handleFormSubmit}>Submit</button>
+            <button className="button is-link" >Submit</button>
           </div>
           <div className="control">
             <button className="button is-link is-light">Cancel</button>

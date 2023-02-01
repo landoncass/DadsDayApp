@@ -4,6 +4,7 @@ import logo2 from './images/Logo2.png'
 import { Link, Route, Routes } from 'react-router-dom'
 import { PersonalDayOut } from './pages/PersonalDayOut'
 import { NewDayOut } from './pages/NewDayOut'
+import { DayOut } from './pages/DayOut'
 
 export function App() {
   return (
@@ -35,7 +36,7 @@ export function App() {
           <Route index element={<AllDaysOut />} />
           <Route path="personal" element={<PersonalDayOut />} />
           <Route path="new" element={<NewDayOut />} />
-          {/* <Route path="daysout/:id" element={<DayOut />} /> */}
+          <Route path="/daysout/:id" element={<DayOut />} />
         </Routes>
       </div>
       <footer>
