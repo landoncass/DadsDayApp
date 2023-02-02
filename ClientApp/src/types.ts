@@ -4,6 +4,7 @@ export type DayOutType = {
   date: string
   description: string
   user: string
+  reviews: ReviewType[]
 }
 
 export type APIError = {
@@ -19,4 +20,13 @@ const NullDayOut: DayOutType = {
   date: '',
   description: '',
   user: ''
+}
+
+export type ReviewType = {
+  id: number | undefined
+  summary: string
+  body: string
+  stars: number
+  createdAt: Date
+  dayOutId: number
 }

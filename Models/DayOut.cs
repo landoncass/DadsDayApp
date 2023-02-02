@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DadsDayApp.Models
@@ -14,5 +15,7 @@ namespace DadsDayApp.Models
         public string Description { get; set; }
 
         public string User { get; set; }
+
+        public List<Review> Reviews { get; set; }
     }
 }

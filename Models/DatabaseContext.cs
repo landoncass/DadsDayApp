@@ -16,6 +16,8 @@ namespace DadsDayApp.Models
         // Add database tables here
         public DbSet<DayOut> DaysOut { get; set; }
 
+        public DbSet<Review> Reviews { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

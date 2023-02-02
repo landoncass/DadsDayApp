@@ -37,11 +37,19 @@ namespace DadsDayApp.Controllers
             // them by row id and return them as a JSON array.
             if (filter == null)
             {
-                return await _context.DaysOut.OrderBy(row => row.Location).ToListAsync();
+                return await _context.DaysOut.
+                        OrderBy(row => row.Location).
+                        Include(dayOut => dayOut.Reviews).
+                        ToListAsync();
             }
             else
             {
-                return await _context.DaysOut.OrderBy(row => row.Location).Where(dayOut => dayOut.Location.ToLower().Contains(filter.ToLower())).ToListAsync();
+                return await _context.DaysOut.
+                        OrderBy(row => row.Location).
+                        Where(dayOut => dayOut.Location.ToLower().
+                        Contains(filter.ToLower())).
+                        Include(dayOut => dayOut.Reviews).
+                        ToListAsync();
             }
 
         }
