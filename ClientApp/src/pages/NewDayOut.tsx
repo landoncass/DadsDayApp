@@ -25,6 +25,7 @@ export function NewDayOut() {
     date: '',
     description: '',
     user: '',
+    reviews: [],
   })
 
   const [errorMessage, setErrorMessage] = useState('')

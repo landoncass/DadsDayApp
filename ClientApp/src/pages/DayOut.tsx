@@ -18,6 +18,7 @@ const NullDayOut: DayOutType = {
   date: '',
   description: '',
   user: '',
+  reviews: [],
 }
 
 export function DayOut() {
@@ -47,6 +48,33 @@ export function DayOut() {
       <p>
         {dayout.user}
       </p>
+      <p>
+        ({dayout.reviews.length})
+      </p>
+      <ul className="reviews">
+        {dayout.reviews.map(review =>
+          <li>
+            <div className="author">
+              Landon said:<em>{review.summary}</em>
+            </div>
+            <div className="body">
+              <p>{review.body}</p>
+            </div>
+             
+            <div className="meta">
+            <span
+              className="stars"
+              style={{ '--rating': review.stars } as CSSStarsProperties}
+              aria-label={`Star rating of this location is ${review.stars} out of 5.`}
+            ></span>
+            <time>{review.createdAt}</time>
+          </div>
+
+
+          </li>
+          )}
+
+      </ul> 
       </h2>
       </section>
       </div>
