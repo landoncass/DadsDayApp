@@ -38,14 +38,14 @@ namespace DadsDayApp.Controllers
             if (filter == null)
             {
                 return await _context.DaysOut.
-                        OrderBy(row => row.Location).
+                        OrderByDescending(row => row.Id).
                         Include(dayOut => dayOut.Reviews).
                         ToListAsync();
             }
             else
             {
                 return await _context.DaysOut.
-                        OrderBy(row => row.Location).
+                        OrderByDescending(row => row.Id).
                         Where(dayOut => dayOut.Location.ToLower().
                         Contains(filter.ToLower())).
                         Include(dayOut => dayOut.Reviews).

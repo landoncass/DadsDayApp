@@ -21,7 +21,7 @@ export function AllDaysOut() {
   return (
     <div className="componentPage">
       <div className="pageHeader">
-        <h1 className="has-text-centered is-size-1">See what other dads have done recently: </h1>
+        <h1 className="has-text-centered is-size-1">Check out some places other Dads have gone recently</h1>
         <br />
         <input
           className="input is-large input is-rounded"
