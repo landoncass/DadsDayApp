@@ -14,7 +14,7 @@ export function SingleDayOutFromList({ dayOut }: { dayOut: DayOutType }) {
               <strong>Where:</strong> <Link to={urlForShowingDayOut}>{dayOut.location}</Link>
             </p>
             <p>
-              <strong>City located:</strong> {dayOut.date}
+              <strong>City located:</strong> {dayOut.city}
             </p>
             <p>
               <strong>Description:</strong> {dayOut.description}

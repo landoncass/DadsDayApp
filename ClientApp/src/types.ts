@@ -1,9 +1,8 @@
 export type DayOutType = {
   id?: string | undefined
   location: string
-  date: string
+  city: string
   description: string
-  user?: string
   reviews: ReviewType[]
 }
 
@@ -17,9 +16,8 @@ export type APIError = {
 
 const NullDayOut: DayOutType = {
   location: '',
-  date: '',
+  city: '',
   description: '',
-  user: ''
 }
 
 export type ReviewType = {
