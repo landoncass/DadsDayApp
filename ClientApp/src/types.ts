@@ -3,7 +3,7 @@ export type DayOutType = {
   location: string
   date: string
   description: string
-  user: string
+  user?: string
   reviews: ReviewType[]
 }
 

@@ -11,18 +11,16 @@ export function SingleDayOutFromList({ dayOut }: { dayOut: DayOutType }) {
         <div className="card-content">
           <div className="content">
             <p>
-              <strong>Where’d you go:</strong> <Link to={urlForShowingDayOut}>{dayOut.location}</Link>
+              <strong>Where:</strong> <Link to={urlForShowingDayOut}>{dayOut.location}</Link>
             </p>
             <p>
-              <strong>When:</strong> {dayOut.date}
+              <strong>City located:</strong> {dayOut.date}
             </p>
             <p>
-              <strong>How was it:</strong> {dayOut.description}
-              ...
+              <strong>Description:</strong> {dayOut.description}
             </p>
-            <p>
-              <strong>User:</strong> {dayOut.user}
-            </p>
+            
+            
           </div>
         </div>
       </div>

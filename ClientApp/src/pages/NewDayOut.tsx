@@ -65,7 +65,7 @@ export function NewDayOut() {
       {errorMessage ? <p className='form-error'>{errorMessage}</p> : null}
       <div className="field" >
           <label className="label" htmlFor="location">
-            Where'd you go?
+            What's the name of the place you went?
           </label>
           <div className="control is-expanded">
             <input
@@ -81,7 +81,7 @@ export function NewDayOut() {
         </div>
         <div className="field">
           <label className="label" htmlFor="date">
-            When did you go?
+            What city is it in?
           </label>
           <div className="control is-expanded">
             <input
@@ -96,7 +96,7 @@ export function NewDayOut() {
 
         <div className="field">
           <label className="label" htmlFor="description">
-            Leave a review
+            How would you describe this place?
           </label>
           <div className="control is-expanded">
             <textarea
@@ -106,21 +106,9 @@ export function NewDayOut() {
               onChange={handleStringFieldChange}
             ></textarea>
           </div>
-        </div>
+        
 
-        <div className="field">
-          <label className="label" htmlFor="user">
-            Your name
-          </label>
-          <div className="control is-expanded">
-            <input
-            className="input"
-              type="text"
-              name="user"
-              value={newDayOut.user}
-              onChange={handleStringFieldChange}
-            ></input>
-          </div>
+        
         </div>
         <div className="form-input">
           <label className="label" htmlFor="picture">

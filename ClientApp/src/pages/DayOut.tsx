@@ -3,6 +3,7 @@ import { useMutation, useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import { DayOutType, ReviewType } from '../types'
 import { NewDayOut } from './NewDayOut'
+import format from 'date-fns/format'
 
 async function loadOneDayOut(id: string | undefined) {
   const response = await fetch(`/api/daysout/${id}`)
@@ -36,6 +37,8 @@ const NullDayOut: DayOutType = {
   reviews: [],
 }
 
+const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
+
 export function DayOut() {
 
   const { id } = useParams <{id: string}>()
@@ -46,7 +49,7 @@ export function DayOut() {
     stars: 5,
     summary: '',
     createdAt: new Date(),
-    dayoutId: Number(id),
+    dayOutId: Number(id),
   })
 
   const {refetch: reloadDayOut ,data: dayout = NullDayOut} = 
@@ -114,7 +117,7 @@ export function DayOut() {
               style={{ '--rating': review.stars } as CSSStarsProperties}
               aria-label={`Star rating of this location is ${review.stars} out of 5.`}
             ></span>
-            <time>{review.createdAt}</time>
+            <time>{review.createdAt ? format(new Date(review.createdAt), dateFormat) : null}</time>
           </div>
           </li>
           )}
