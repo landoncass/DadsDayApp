@@ -27,7 +27,7 @@ namespace DadsDayApp.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Date")
+                    b.Property<string>("City")
                         .HasColumnType("text");
 
                     b.Property<string>("Description")
@@ -36,8 +36,7 @@ namespace DadsDayApp.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("text");
 
-                    b.Property<string>("User")
-                        .HasColumnType("text");
+                    
 
                     b.HasKey("Id");
 

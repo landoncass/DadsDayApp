@@ -20,9 +20,7 @@ export function PersonalDayOut() {
                   <strong>How was it:</strong> Benny really liked jumping on the
                   trampoline with the ball. I hurt my knee, but we’ll ...
                 </p>
-                <p>
-                  <strong>User:</strong> Greg
-                </p>
+               
                 <p>Read more</p>
               </div>
             </div>
@@ -41,9 +39,7 @@ export function PersonalDayOut() {
               <strong>How was it:</strong> Benny really liked jumping on the
               trampoline with the ball. I hurt my knee, but we’ll ...
             </p>
-            <p>
-              <strong>User:</strong> Greg
-            </p>
+          
           </div>
         </li>
         <li>
@@ -58,9 +54,7 @@ export function PersonalDayOut() {
               <strong>How was it:</strong> Benny really liked jumping on the
               trampoline with the ball. I hurt my knee, but we’ll ...
             </p>
-            <p>
-              <strong>User:</strong> Greg
-            </p>
+            
           </div>
         </li>
       </ul>
@@ -78,9 +72,7 @@ export function PersonalDayOut() {
               <strong>How was it:</strong> Benny really liked jumping on the
               trampoline with the ball. I hurt my knee, but we’ll ...
             </p>
-            <p>
-              <strong>User:</strong> Greg
-            </p>
+            
           </div>
         </li>
         <li>
@@ -95,9 +87,7 @@ export function PersonalDayOut() {
               <strong>How was it:</strong> Benny really liked jumping on the
               trampoline with the ball. I hurt my knee, but we’ll ...
             </p>
-            <p>
-              <strong>User:</strong> Greg
-            </p>
+            
           </div>
         </li>
       </ul>

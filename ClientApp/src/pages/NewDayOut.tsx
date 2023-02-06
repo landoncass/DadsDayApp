@@ -22,9 +22,8 @@ export function NewDayOut() {
   const [newDayOut, setNewDayOut] = useState<DayOutType>({
     id: undefined,
     location: '',
-    date: '',
+    city: '',
     description: '',
-    user: '',
     reviews: [],
   })
 
@@ -80,15 +79,15 @@ export function NewDayOut() {
           </div>
         </div>
         <div className="field">
-          <label className="label" htmlFor="date">
+          <label className="label" htmlFor="city">
             What city is it in?
           </label>
           <div className="control is-expanded">
             <input
               className="input"
               type="text"
-              name="date"
-              value={newDayOut.date}
+              name="city"
+              value={newDayOut.city}
               onChange={handleStringFieldChange}
             ></input>
           </div>

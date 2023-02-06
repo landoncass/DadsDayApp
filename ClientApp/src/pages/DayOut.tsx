@@ -31,9 +31,9 @@ async function submitNewReview(review: ReviewType){
 
 const NullDayOut: DayOutType = {
   location: '',
-  date: '',
+  city: '',
   description: '',
-  user: '',
+  
   reviews: [],
 }
 
@@ -90,14 +90,12 @@ export function DayOut() {
         </h1>
       
       <h2 className="subtitle">
-      {dayout.date}
+      {dayout.city}
       
       <p>
         {dayout.description}
       </p>
-      <p>
-        {dayout.user}
-      </p>
+      
       <p>
         ({dayout.reviews.length})
       </p>
