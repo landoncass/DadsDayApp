@@ -5,6 +5,7 @@ import { Link, Route, Routes } from 'react-router-dom'
 import { PersonalDayOut } from './pages/PersonalDayOut'
 import { NewDayOut } from './pages/NewDayOut'
 import { DayOut } from './pages/DayOut'
+import { SignUp } from './pages/signup'
 
 export function App() {
   return (
@@ -21,8 +22,9 @@ export function App() {
           <Link to="/">
             <a className="navbar-item">Home</a>
           </Link>
-          <Link to="/personal">
-            <a className="navbar-item">Your Days Out</a>
+
+          <Link to="/signup">
+            <a className="navbar-item">Sign Up</a>
           </Link>
 
           <Link to="/new">
@@ -37,6 +39,7 @@ export function App() {
           <Route path="personal" element={<PersonalDayOut />} />
           <Route path="new" element={<NewDayOut />} />
           <Route path="/daysout/:id" element={<DayOut />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </div>
       <footer>
