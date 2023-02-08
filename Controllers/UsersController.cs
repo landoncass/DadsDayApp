@@ -59,9 +59,5 @@ namespace DadsDayApp.Controllers
                 return BadRequest(response);
             }
         }
-
-
-
-
     }
 }
