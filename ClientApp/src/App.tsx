@@ -65,6 +65,7 @@ export function App() {
           <a className="navbar-item">
             <img src={logo2} />
           </a>
+          <Link to="/"><a className="navbar-item">Home</a></Link>
           {isLoggedIn() ? <LoggedInNav /> : <SignedOutNav />}
 
         </div>
