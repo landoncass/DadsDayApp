@@ -7,8 +7,54 @@ import { NewDayOut } from './pages/NewDayOut'
 import { DayOut } from './pages/DayOut'
 import { SignUp } from './pages/signup'
 import { SignIn } from './pages/login'
+import { getUser, isLoggedIn, logout } from './auth'
+import { LoggedInUser } from './types'
 
+function LoggedInNav() {
+  const user = getUser()
+  function handleLogout() {
+    logout()
+    window.location.assign('/')
+  }
+  return (
+    <><p className='navbar-item'>Welcome {user.fullName}!</p>
+
+      <Link to="/new">
+        <a className="navbar-item">Add a Day Out</a>
+      </Link>
+      <a
+        href="/"
+        className="navbar-item"
+        onClick={function (event) {
+          event.preventDefault()
+          handleLogout()
+        }}
+      >
+        Sign out
+      </a>
+      )
+
+
+
+    </>
+  )
+}
+
+function SignedOutNav() {
+  return (
+    <>
+      <Link to="/signup">
+        <a className="navbar-item">Sign Up</a>
+      </Link>
+
+      <Link to="/signin">
+        <a className="navbar-item">Sign In</a></Link>
+    </>
+  )
+
+}
 export function App() {
+
   return (
     <div>
       <header>
@@ -19,22 +65,8 @@ export function App() {
           <a className="navbar-item">
             <img src={logo2} />
           </a>
+          {isLoggedIn() ? <LoggedInNav /> : <SignedOutNav />}
 
-          <Link to="/">
-            <a className="navbar-item">Home</a>
-          </Link>
-
-          <Link to="/signup">
-            <a className="navbar-item">Sign Up</a>
-          </Link>
-
-          <Link to="/signin">
-            <a className="navbar-item">Sign In</a></Link>
-
-          <Link to="/new">
-            <a className="navbar-item">Add a Day Out</a>
-          </Link>
-          
         </div>
       </nav>
       <div className="componentView">
@@ -45,7 +77,7 @@ export function App() {
           <Route path="/daysout/:id" element={<DayOut />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
-        
+
         </Routes>
       </div>
       <footer>

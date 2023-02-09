@@ -40,11 +40,12 @@ export type LoginUserType = {
   password: string
 }
 
-export type LoginSuccess = {
-  token: string
-  user: {
-    id: number
+export type LoggedInUser {
+  id: number
     fullName: string
     email: string
-  }
+}
+export type LoginSuccess = {
+  token: string
+  user: LoggedInUser
 }
