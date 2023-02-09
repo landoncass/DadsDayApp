@@ -6,6 +6,7 @@ import { PersonalDayOut } from './pages/PersonalDayOut'
 import { NewDayOut } from './pages/NewDayOut'
 import { DayOut } from './pages/DayOut'
 import { SignUp } from './pages/signup'
+import { SignIn } from './pages/login'
 
 export function App() {
   return (
@@ -27,6 +28,9 @@ export function App() {
             <a className="navbar-item">Sign Up</a>
           </Link>
 
+          <Link to="/signin">
+            <a className="navbar-item">Sign In</a></Link>
+
           <Link to="/new">
             <a className="navbar-item">Add a Day Out</a>
           </Link>
@@ -40,6 +44,8 @@ export function App() {
           <Route path="new" element={<NewDayOut />} />
           <Route path="/daysout/:id" element={<DayOut />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+        
         </Routes>
       </div>
       <footer>

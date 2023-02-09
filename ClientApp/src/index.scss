@@ -34,7 +34,6 @@ body {
   flex-wrap: wrap;
   gap: 20px;
   margin: 2rem;
- 
 }
 
 .DayOutList li {
@@ -81,7 +80,7 @@ header {
   display: flex;
   background-color: $blue;
   position: fixed;
-  
+  width: 100%;
   left: 0;
   top: 0;
 }
@@ -108,7 +107,7 @@ header {
 
 footer {
   background-color: var(--blue);
-  position: fixed;
+  // position: fixed;
   bottom: 0;
   width: 100%;
   color: white;
