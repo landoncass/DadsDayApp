@@ -86,42 +86,46 @@ export function DayOut() {
 
       <section className="section is-large has-background-light m-auto">
 
-        <h1 className="title">
+        <h1 className="title is-1">
           {dayout.location}
         </h1>
 
-        <h2 className="subtitle">
+        <h2 className="title is-4">
           {dayout.city}
-
-          <p>
-            {dayout.description}
-          </p>
-
-          <p>
-            ({dayout.reviews.length})
-          </p>
-          <ul className="reviews">
-            {dayout.reviews.map(review =>
-              <li>
-                <div className="author">
-                  Landon said:<em>{review.summary}</em>
-                </div>
-                <div className="body">
-                  <p>{review.body}</p>
-                </div>
-
-                <div className="meta">
-                  <span
-                    className="stars"
-                    style={{ '--rating': review.stars } as CSSStarsProperties}
-                    aria-label={`Star rating of this location is ${review.stars} out of 5.`}
-                  ></span>
-                  <time>{review.createdAt ? format(new Date(review.createdAt), dateFormat) : null}</time>
-                </div>
-              </li>
-            )}
-          </ul>
         </h2>
+        <p className="title is-5">
+          {dayout.description}
+        </p>
+
+        <p className="title is-5">
+          ({dayout.reviews.length})
+        </p>
+        <ul className="reviews">
+          {dayout.reviews.map(review =>
+            <div className="box">
+              <article className="media-left">
+                <div className="media-content">
+                  <div className="content">
+                    <h4 className="title is-4">
+                      Landon said: <em>{review.summary}</em>
+                    </h4>
+                    <p className="subtitle is-4">{review.body}</p>
+                    <div className="meta">
+                      <span
+                        className="stars"
+                        style={{ '--rating': review.stars } as CSSStarsProperties}
+                        aria-label={`Star rating of this location is ${review.stars} out of 5.`}
+                      ></span>
+                      <time className="subtitle is-5" >{review.createdAt ? format(new Date(review.createdAt), dateFormat) : null}</time>
+                    </div>
+                  </div>
+                </div>
+
+              </article>
+            </div>
+          )}
+        </ul>
+
         {isLoggedIn() ? <>
           <h3>Enter your own review</h3>
           <form onSubmit={function (event) {
@@ -162,6 +166,6 @@ export function DayOut() {
           </form> </> : null}
 
       </section>
-    </div>
+    </div >
   )
 }

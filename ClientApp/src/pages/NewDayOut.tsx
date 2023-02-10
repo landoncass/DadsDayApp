@@ -104,9 +104,6 @@ export function NewDayOut() {
               onChange={handleStringFieldChange}
             ></textarea>
           </div>
-
-
-
         </div>
         <div className="form-input">
           <label className="label" htmlFor="picture">
