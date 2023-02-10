@@ -61,14 +61,13 @@ export function NewDayOut() {
         <h1 className="text-center">Add a Day Out</h1>
       </div>
       <form onSubmit={handleFormSubmit}>
-      {errorMessage ? <p className='form-error'>{errorMessage}</p> : null}
-      <div className="field" >
+        {errorMessage ? <p className='form-error'>{errorMessage}</p> : null}
+        <div className="field" >
           <label className="label" htmlFor="location">
             What's the name of the place you went?
           </label>
           <div className="control is-expanded">
             <input
-            
               className="input"
               required
               type="text"
@@ -99,15 +98,15 @@ export function NewDayOut() {
           </label>
           <div className="control is-expanded">
             <textarea
-            className="input"
+              className="input"
               name="description"
               value={newDayOut.description}
               onChange={handleStringFieldChange}
             ></textarea>
           </div>
-        
 
-        
+
+
         </div>
         <div className="form-input">
           <label className="label" htmlFor="picture">
@@ -126,9 +125,9 @@ export function NewDayOut() {
             <button className="button is-link is-light">Cancel</button>
           </div>
         </div>
-        </form>
-      </div>
-      
-      
+      </form>
+    </div>
+
+
   )
 }

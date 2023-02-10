@@ -26,7 +26,7 @@ export function SignUp() {
     password: '',
   })
 
-let navigate = useNavigate()
+  let navigate = useNavigate()
   const createUserMutation = useMutation(
     (newUser: NewUserType) => submitNewUser(newUser),
     {
@@ -38,51 +38,49 @@ let navigate = useNavigate()
       },
     }
   )
-  
-  
+
+
 
   function handleStringFieldChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) {
+  ) {
     const value = event.target.value
     const fieldName = event.target.name
-  
+
     const updatedUser = { ...newUser, [fieldName]: value }
-  
+
     setNewUser(updatedUser)
   }
 
   return (
-    <main className="page">
-      <nav>
-        <a href="/">
-          <i className="fa fa-home"></i>
-        </a>
-        <h2>Sign Up</h2>
-      </nav>
+    <div className="newDay">
+      <div className="pageHeader">
+        <h1 className="text-center">Sign Up</h1>
+      </div>
 
-      <form onSubmit={function(event) {
+      <form onSubmit={function (event) {
         event.preventDefault()
 
         createUserMutation.mutate(newUser)
       }}>
 
         {errorMessage ? <p className="form-error">{errorMessage}</p> : null}
-        <p className="form-input">
-          <label htmlFor="fullName">Name</label>
-          <input type="text" name="fullName" value={newUser.fullName} onChange={handleStringFieldChange}/>
-        </p>
-        <p className="form-input">
-          <label htmlFor="name">Email</label>
-          <input type="email" name="email" value={newUser.email} onChange={handleStringFieldChange}/>
-        </p>
-        <p className="form-input">
-          <label htmlFor="password">Password</label>
-          <input type="password" name="password" value={newUser.password} onChange={handleStringFieldChange}/>
-        </p>
+
+        <div className="field">
+          <label className="label" htmlFor="fullName">Name</label>
+          <input type="text" name="fullName" value={newUser.fullName} onChange={handleStringFieldChange} />
+        </div>
+        <div className="field">
+          <label className="label" htmlFor="name">Email</label>
+          <input type="email" name="email" value={newUser.email} onChange={handleStringFieldChange} />
+        </div>
+        <div className="field">
+          <label className="label" htmlFor="password">Password</label>
+          <input type="password" name="password" value={newUser.password} onChange={handleStringFieldChange} />
+        </div>
         <p>
           <input type="submit" value="Submit" />
         </p>
       </form>
-    </main>
+    </div>
   )
 }
