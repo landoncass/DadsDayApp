@@ -60,6 +60,8 @@ namespace DadsDayApp.Controllers
         [HttpPost]
         public async Task<ActionResult<Review>> PostReview(Review review)
         {
+            // Set the UserID to the current user id, this overrides anything the user specifies.
+            review.UserId = GetCurrentUserId();
             // Indicate to the database context we want to add this new record
             _context.Reviews.Add(review);
             await _context.SaveChangesAsync();

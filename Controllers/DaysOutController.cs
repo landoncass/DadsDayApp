@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DadsDayApp.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DadsDayApp.Controllers
 {
@@ -141,8 +144,11 @@ namespace DadsDayApp.Controllers
         // new values for the record.
         //
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<DayOut>> PostDayOut(DayOut dayOut)
         {
+            // Set the UserID to the current user id, this overrides anything the user specifies.
+            dayOut.UserId = GetCurrentUserId();
             // Indicate to the database context we want to add this new record
             _context.DaysOut.Add(dayOut);
             await _context.SaveChangesAsync();
@@ -183,6 +189,13 @@ namespace DadsDayApp.Controllers
         private bool DayOutExists(int id)
         {
             return _context.DaysOut.Any(dayOut => dayOut.Id == id);
+        }
+
+        // Private helper method to get the JWT claim related to the user ID
+        private int GetCurrentUserId()
+        {
+            // Get the User Id from the claim and then parse it as an integer.
+            return int.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "Id").Value);
         }
     }
 }

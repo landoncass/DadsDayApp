@@ -12,5 +12,8 @@ namespace DadsDayApp.Models
 
         public int DayOutId { get; set; }
         public DayOut DayOut { get; set; }
+
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

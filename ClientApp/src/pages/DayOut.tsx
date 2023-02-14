@@ -19,7 +19,7 @@ async function loadOneDayOut(id: string | undefined) {
 async function submitNewReview(review: ReviewType) {
   const response = await fetch(`/api/Reviews`, {
     method: 'POST',
-    headers: { 'content-type': 'application/json' },
+    headers: { 'content-type': 'application/json', Authorization: authHeader() },
     body: JSON.stringify(review),
   })
 

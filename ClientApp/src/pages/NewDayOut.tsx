@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import { authHeader } from '../auth'
 import { APIError, DayOutType } from '../types'
 
 async function submitNewDayOut(dayOutToCreate: DayOutType) {
   const response = await fetch('/api/daysout', {
     method: 'POST',
-    headers: { 'content-type': 'application/json' },
+    headers: {
+      'content-type': 'application/json',
+      Authorization: authHeader()
+    },
     body: JSON.stringify(dayOutToCreate),
   })
 
