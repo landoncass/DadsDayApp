@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
-import { DayOutType, ReviewType } from '../types'
+import { DayOutType, NewReviewType } from '../types'
 import { NewDayOut } from './NewDayOut'
 import format from 'date-fns/format'
-import { isLoggedIn } from '../auth'
+import { authHeader, isLoggedIn } from '../auth'
 
 async function loadOneDayOut(id: string | undefined) {
   const response = await fetch(`/api/daysout/${id}`)
@@ -16,7 +16,7 @@ async function loadOneDayOut(id: string | undefined) {
   }
 }
 
-async function submitNewReview(review: ReviewType) {
+async function submitNewReview(review: NewReviewType) {
   const response = await fetch(`/api/Reviews`, {
     method: 'POST',
     headers: { 'content-type': 'application/json', Authorization: authHeader() },
@@ -44,7 +44,7 @@ export function DayOut() {
 
   const { id } = useParams<{ id: string }>()
 
-  const [newReview, setNewReview] = useState<ReviewType>({
+  const [newReview, setNewReview] = useState<NewReviewType>({
     id: undefined,
     body: '',
     stars: 5,
@@ -107,7 +107,7 @@ export function DayOut() {
                 <div className="media-content">
                   <div className="content">
                     <h4 className="title is-4">
-                      Landon said: <em>{review.summary}</em>
+                      {review.user.fullName} said: <em>{review.summary}</em>
                     </h4>
                     <p className="subtitle is-4">{review.body}</p>
                     <div className="meta">

@@ -99,6 +99,10 @@ namespace DadsDayApp.Controllers
         }
 
         // Private helper method that looks up an existing review by the supplied id
-
+        private int GetCurrentUserId()
+        {
+            // Get the User Id from the claim and then parse it as an integer.
+            return int.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "Id").Value);
+        }
     }
 }

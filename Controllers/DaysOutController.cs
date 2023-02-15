@@ -68,8 +68,9 @@ namespace DadsDayApp.Controllers
         {
             // Find the dayOut in the database using `FindAsync` to look it up by id
             var dayOut = await _context.DaysOut.
-                                    Where(dayOut => dayOut.Id == id).
                                     Include(dayOut => dayOut.Reviews).
+                                    ThenInclude(review => review.User).
+                                    Where(dayOut => dayOut.Id == id).
                                     FirstOrDefaultAsync();
 
             // If we didn't find anything, we receive a `null` in return

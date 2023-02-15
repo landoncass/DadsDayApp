@@ -36,8 +36,8 @@ body {
   margin: 2rem;
 }
 
-.DayOutList li {
-  margin: 1rem;
+.DaysOutList > * {
+  flex: 1 1 30%;
 }
 
 .navbar-burger {
@@ -47,9 +47,6 @@ body {
   color: white;
 }
 
-.DaysOutList > * {
-  flex: 1 200px;
-}
 
 .pageHeader {
   display: flex;
