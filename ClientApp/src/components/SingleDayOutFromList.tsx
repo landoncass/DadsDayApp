@@ -4,7 +4,7 @@ import { DayOutType } from '../types'
 
 export function SingleDayOutFromList({ dayOut }: { dayOut: DayOutType }) {
   const urlForShowingDayOut = `/daysout/${dayOut.id}`
-  
+
   return (
     <li>
       <div className="card">
@@ -19,8 +19,10 @@ export function SingleDayOutFromList({ dayOut }: { dayOut: DayOutType }) {
             <p>
               <strong>Description:</strong> {dayOut.description}
             </p>
-            
-            
+            <p>
+              <strong>Reviews </strong> {dayOut.reviews.length}
+            </p>
+
           </div>
         </div>
       </div>

@@ -17,12 +17,12 @@ function LoggedInNav() {
     window.location.assign('/')
   }
   return (
-    <><p className='navbar-item'>Welcome {user.fullName}!</p>
+    <><Link to=""><p className='navbar-item'>Welcome {user.fullName}!</p></Link>
 
       <Link to="/new">
         <a className="navbar-item">Add a Day Out</a>
       </Link>
-      <a
+      <Link to=""><a
         href="/"
         className="navbar-item"
         onClick={function (event) {
@@ -31,7 +31,7 @@ function LoggedInNav() {
         }}
       >
         Sign out
-      </a>
+      </a></Link>
       )
 
 
