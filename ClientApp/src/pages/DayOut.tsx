@@ -98,7 +98,7 @@ export function DayOut() {
         </p>
 
         <p className="title is-5">
-          ({dayout.reviews.length})
+          ({dayout.reviews.length}) review(s)
         </p>
         <ul className="reviews">
           {dayout.reviews.map(review =>
