@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DadsDayApp.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230206203621_CreateUserModel")]
-    partial class CreateUserModel
+    [Migration("20230220011658_AddLatitudeAndLongitudeToDayOut")]
+    partial class AddLatitudeAndLongitudeToDayOut
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,11 +36,22 @@ namespace DadsDayApp.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<double>("Latitude")
+                        .HasColumnType("double precision");
+
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<double>("Longitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("DaysOut");
                 });
@@ -67,9 +78,14 @@ namespace DadsDayApp.Migrations
                     b.Property<string>("Summary")
                         .HasColumnType("text");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DayOutId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reviews");
                 });
@@ -94,7 +110,21 @@ namespace DadsDayApp.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("DadsDayApp.Models.DayOut", b =>
+                {
+                    b.HasOne("DadsDayApp.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DadsDayApp.Models.Review", b =>
@@ -105,7 +135,15 @@ namespace DadsDayApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DadsDayApp.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("DayOut");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DadsDayApp.Models.DayOut", b =>

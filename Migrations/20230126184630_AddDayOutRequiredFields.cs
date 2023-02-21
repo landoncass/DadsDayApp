@@ -27,7 +27,7 @@ namespace DadsDayApp.Migrations
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
-                name: "City",
+                name: "Address",
                 table: "DaysOut",
                 type: "text",
                 nullable: false,
@@ -56,7 +56,7 @@ namespace DadsDayApp.Migrations
                 oldType: "text");
 
             migrationBuilder.AlterColumn<string>(
-                name: "City",
+                name: "Address",
                 table: "DaysOut",
                 type: "text",
                 nullable: true,

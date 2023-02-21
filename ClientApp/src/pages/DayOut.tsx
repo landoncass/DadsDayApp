@@ -33,7 +33,7 @@ async function submitNewReview(review: NewReviewType) {
 
 const NullDayOut: DayOutType = {
   location: '',
-  city: '',
+  address: '',
   description: '',
 
   reviews: [],
@@ -93,7 +93,7 @@ export function DayOut() {
   return (
     <div className="componentPage">
 
-      <section className="section is-large has-background-light m-auto">
+      <section className="section is-small has-background-light m-auto">
 
         <h1 className="title is-1">
           {dayout.location}
@@ -101,7 +101,7 @@ export function DayOut() {
           <Stars dayOut={dayout} /> ({dayout.reviews.length})
         </h1>
         <h2 className="title is-4">
-          {dayout.city}
+          {dayout.address}
         </h2>
         <p className="title is-5">
           {dayout.description}

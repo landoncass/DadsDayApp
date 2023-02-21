@@ -9,8 +9,12 @@ namespace DadsDayApp.Models
 
         [Required(ErrorMessage = "You must provide a location.")]
         public string Location { get; set; }
-        [Required(ErrorMessage = "You must provide a city.")]
-        public string City { get; set; }
+        [Required(ErrorMessage = "You must provide an address.")]
+        public string Address { get; set; }
+
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+
         [Required(ErrorMessage = "You must provide a review.")]
         public string Description { get; set; }
 

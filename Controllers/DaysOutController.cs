@@ -9,6 +9,9 @@ using DadsDayApp.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
+using Geocoding.Microsoft;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DadsDayApp.Controllers
 {
@@ -21,6 +24,16 @@ namespace DadsDayApp.Controllers
     {
         // This is the variable you use to have access to your database
         private readonly DatabaseContext _context;
+        private readonly string BING_MAPS_KEY;
+
+        // Constructor that receives a reference to your database context
+        // and stores it in _context_ for you to use in your API methods
+        [ActivatorUtilitiesConstructor]
+        public DaysOutController(DatabaseContext context, IConfiguration config)
+        {
+            _context = context;
+            BING_MAPS_KEY = config["BING_MAPS_KEY"];
+        }
 
         // Constructor that recives a reference to your database context
         // and stores it in _context for you to use in your API methods
@@ -150,6 +163,22 @@ namespace DadsDayApp.Controllers
         {
             // Set the UserID to the current user id, this overrides anything the user specifies.
             dayOut.UserId = GetCurrentUserId();
+
+            // Create a new geocoder
+            var geocoder = new BingMapsGeocoder(BING_MAPS_KEY);
+
+            // Request this address to be geocoded.
+            var geocodedAddresses = await geocoder.GeocodeAsync(dayOut.Address);
+
+            // ... and pick out the best address sorted by the confidence level
+            var bestGeocodedAddress = geocodedAddresses.OrderBy(address => address.Confidence).FirstOrDefault();
+
+            // If we have a best geocoded address, use the latitude and longitude from that result
+            if (bestGeocodedAddress != null)
+            {
+                dayOut.Latitude = bestGeocodedAddress.Coordinates.Latitude;
+                dayOut.Longitude = bestGeocodedAddress.Coordinates.Longitude;
+            }
             // Indicate to the database context we want to add this new record
             _context.DaysOut.Add(dayOut);
             await _context.SaveChangesAsync();

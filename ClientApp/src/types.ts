@@ -8,7 +8,7 @@ export interface CSSStarsProperties extends CSSProperties {
 export type DayOutType = {
   id?: string | undefined
   location: string
-  city: string
+  address: string
   description: string
   reviews: ReviewType[]
 }
@@ -23,7 +23,7 @@ export type APIError = {
 
 const NullDayOut: DayOutType = {
   location: '',
-  city: '',
+  address: '',
   description: '',
 }
 
