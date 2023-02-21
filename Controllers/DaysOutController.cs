@@ -161,9 +161,6 @@ namespace DadsDayApp.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<DayOut>> PostDayOut(DayOut dayOut)
         {
-            // Set the UserID to the current user id, this overrides anything the user specifies.
-            dayOut.UserId = GetCurrentUserId();
-
             // Create a new geocoder
             var geocoder = new BingMapsGeocoder(BING_MAPS_KEY);
 
@@ -179,6 +176,10 @@ namespace DadsDayApp.Controllers
                 dayOut.Latitude = bestGeocodedAddress.Coordinates.Latitude;
                 dayOut.Longitude = bestGeocodedAddress.Coordinates.Longitude;
             }
+            // Set the UserID to the current user id, this overrides anything the user specifies.
+            dayOut.UserId = GetCurrentUserId();
+
+
             // Indicate to the database context we want to add this new record
             _context.DaysOut.Add(dayOut);
             await _context.SaveChangesAsync();

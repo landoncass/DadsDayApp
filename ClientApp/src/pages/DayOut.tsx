@@ -107,7 +107,7 @@ export function DayOut() {
           {dayout.description}
         </p>
 
-
+        <h2 className="title is-2">Reviews</h2>
         <ul className="reviews">
           {dayout.reviews.map(review =>
             <div className="box">
