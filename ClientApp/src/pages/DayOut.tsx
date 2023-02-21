@@ -7,6 +7,9 @@ import format from 'date-fns/format'
 import { authHeader, isLoggedIn } from '../auth'
 import { Stars } from '../components/Stars'
 
+
+
+
 async function loadOneDayOut(id: string | undefined) {
   const response = await fetch(`/api/daysout/${id}`)
 
@@ -43,6 +46,8 @@ const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
 
 export function DayOut() {
 
+
+
   const { id } = useParams<{ id: string }>()
 
   const [newReview, setNewReview] = useState<NewReviewType>({
@@ -53,6 +58,7 @@ export function DayOut() {
     createdAt: new Date(),
     dayOutId: Number(id),
   })
+
 
   const { refetch: reloadDayOut, data: dayout = NullDayOut } =
     useQuery<DayOutType>(
@@ -138,9 +144,9 @@ export function DayOut() {
         </ul >
 
         {isLoggedIn() ? <>
-          <div className="pageHeader">
-            <h3>Enter your own review</h3>
-          </div>
+          <br></br>
+          <h3 className="title is-2">Enter your own review</h3>
+
           <form onSubmit={function (event) {
             event.preventDefault()
             createNewReview.mutate(newReview)
