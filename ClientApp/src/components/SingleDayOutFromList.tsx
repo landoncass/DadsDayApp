@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { DayOutType } from '../types'
+import { CSSStarsProperties, DayOutType } from '../types'
+import { Stars } from './Stars'
+
 
 export function SingleDayOutFromList({ dayOut }: { dayOut: DayOutType }) {
   const urlForShowingDayOut = `/daysout/${dayOut.id}`
-
   return (
     <li>
       <div className="card">
@@ -20,12 +21,14 @@ export function SingleDayOutFromList({ dayOut }: { dayOut: DayOutType }) {
               <strong>Description:</strong> {dayOut.description}
             </p>
             <p>
-              <strong>Reviews </strong> {dayOut.reviews.length}
+              <Stars dayOut={dayOut} />
+              <strong>Reviews </strong> ({dayOut.reviews.length})
+
             </p>
 
           </div>
         </div>
       </div>
-    </li>
+    </li >
   )
 }

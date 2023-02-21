@@ -1,3 +1,10 @@
+import { CSSProperties } from 'react'
+
+export interface CSSStarsProperties extends CSSProperties {
+  '--rating': number;
+}
+
+
 export type DayOutType = {
   id?: string | undefined
   location: string

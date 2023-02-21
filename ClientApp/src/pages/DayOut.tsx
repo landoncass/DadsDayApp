@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
-import { DayOutType, NewReviewType } from '../types'
+import { CSSStarsProperties, DayOutType, NewReviewType } from '../types'
 import { NewDayOut } from './NewDayOut'
 import format from 'date-fns/format'
 import { authHeader, isLoggedIn } from '../auth'
+import { Stars } from '../components/Stars'
 
 async function loadOneDayOut(id: string | undefined) {
   const response = await fetch(`/api/daysout/${id}`)
@@ -79,6 +80,14 @@ export function DayOut() {
     },
   })
 
+  const totalStars = dayout.reviews.reduce(
+    (starRatingSum, review) => starRatingSum + review.stars,
+    0
+  )
+
+  const averageStars = totalStars / dayout.reviews.length || 0
+
+  const averageStarsToOneDecimalPlace = Number(averageStars.toFixed(1))
 
 
   return (
@@ -88,8 +97,9 @@ export function DayOut() {
 
         <h1 className="title is-1">
           {dayout.location}
+          <br></br>
+          <Stars dayOut={dayout} /> ({dayout.reviews.length})
         </h1>
-
         <h2 className="title is-4">
           {dayout.city}
         </h2>
@@ -97,9 +107,7 @@ export function DayOut() {
           {dayout.description}
         </p>
 
-        <p className="title is-5">
-          ({dayout.reviews.length}) review(s)
-        </p>
+
         <ul className="reviews">
           {dayout.reviews.map(review =>
             <div className="box">
@@ -107,7 +115,7 @@ export function DayOut() {
                 <div className="media-content">
                   <div className="content">
                     <h4 className="title is-4">
-                      {review.user.fullName} said: <em>{review.summary}</em>
+                      {review.summary}
                     </h4>
                     <p className="subtitle is-4">{review.body}</p>
                     <div className="meta">
@@ -115,41 +123,50 @@ export function DayOut() {
                         className="stars"
                         style={{ '--rating': review.stars } as CSSStarsProperties}
                         aria-label={`Star rating of this location is ${review.stars} out of 5.`}
-                      ></span>
-                      <time className="subtitle is-5" >{review.createdAt ? format(new Date(review.createdAt), dateFormat) : null}</time>
-                    </div>
+                      ></span></div>
+                    <br></br>
+
+                    <p className="subtitle is-5"><a href={`mailto: ${review.user.email}`}>Posted by {review.user.fullName}</a> <time>{review.createdAt ? format(new Date(review.createdAt), dateFormat) : null}</time></p>
+
                   </div>
                 </div>
 
               </article>
             </div>
-          )}
-        </ul>
+          )
+          }
+        </ul >
 
         {isLoggedIn() ? <>
-          <h3>Enter your own review</h3>
+          <div className="pageHeader">
+            <h3>Enter your own review</h3>
+          </div>
           <form onSubmit={function (event) {
             event.preventDefault()
             createNewReview.mutate(newReview)
           }}>
-            <p className="form-input">
-              <label htmlFor="summary">Summary</label>
-              <input type="text"
+            <div className="field">
+              <label className="label" htmlFor="summary">Summary</label>
+              <input className="input"
+                type="text"
                 name="summary"
+                placeholder="Enter a brief summary of your review"
                 value={newReview.summary}
                 onChange={handleNewReviewTextFieldChange} />
               <span className="note">
-                Enter a brief summary of your review. Example: {''}
-                <strong>Had a great time with my kid. Will do it again</strong>
+                Example: {''}
+                <em>Had a great time with my kid. Will do it again</em>
               </span>
-            </p>
-            <p className="form-input">
-              <label htmlFor="body">Review</label>
+            </div>
+            <div className="field">
+              <label className="label" htmlFor="body">Your Review</label>
               <textarea
+                className="textarea"
                 name="body"
                 value={newReview.body}
+                placeholder="How did you and your child enjoy this place? What did you do there? Would you recommend it?"
                 onChange={handleNewReviewTextFieldChange}></textarea>
-            </p>
+            </div>
             <div className="rating">
               <input id="star-rating-1" type="radio" name="stars" value="1" checked={newReview.stars === 1} onChange={() => handleStarRadioButton(1)} />
               <label htmlFor="star-rating-1">1 star</label>
@@ -162,10 +179,11 @@ export function DayOut() {
               <input id="star-rating-5" type="radio" name="stars" value="5" checked={newReview.stars === 5} onChange={() => handleStarRadioButton(5)} />
               <label htmlFor="star-rating-5">5 stars</label>
             </div>
+            <br></br>
             <button>Submit Review</button>
           </form> </> : null}
 
-      </section>
+      </section >
     </div >
   )
 }

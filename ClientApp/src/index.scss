@@ -2,6 +2,7 @@
 @import '../node_modules/bulma/bulma.sass';
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 
+
 :root {
   --blue: #444c6c;
   --sand: #a7837b;
@@ -143,4 +144,24 @@ footer {
 
 section is-large {
   background-color: white;
+}
+
+.stars {
+  --rating: 0;
+  --percent: calc(var(--rating) / 5 * 100%);
+
+  display: inline-block;
+}
+
+.stars::before {
+  content: '★★★★★';
+  letter-spacing: 3px;
+  background: linear-gradient(
+    90deg,
+    goldenrod var(--percent),
+    #ccc var(--percent)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
