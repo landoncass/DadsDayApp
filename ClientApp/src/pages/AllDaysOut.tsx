@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { DayOutType } from '../types'
 import { SingleDayOutFromList } from '../components/SingleDayOutFromList'
-import ReactMapGL, { NavigationControl } from 'react-map-gl'
+import Map, { NavigationControl } from 'react-map-gl'
 
 export function AllDaysOut() {
+  const token = import.meta.env.VITE_APP_MAPBOX_TOKEN as string
+
+
   const [filterText, setFilterText] = useState('')
   const [viewport, setViewport] = useState({
     latitude: 27.77101804911986,
@@ -39,21 +42,21 @@ export function AllDaysOut() {
             setFilterText(event.target.value)
           }}
         />
-      </div>
 
-      {/* <section className="map">
-          <ReactMapGL
-            {...viewport}
-            style={{ position: 'absolute' }}
-            width="100%"
-            height="100%"
-            mapboxApiAccessToken={import.meta.env.VITE_APP_MAPBOX_TOKEN as string}
-          >
-            <div style={{ position: 'absolute', left: 10 }}>
-              <NavigationControl />
-            </div>
-          </ReactMapGL>
-        </section> */}
+      </div>
+      <section className="map">
+        <Map
+          initialViewState={viewport}
+          style={{ width: "100%", height: 200 }}
+          mapStyle="mapbox://styles/mapbox/streets-v9"
+          mapboxAccessToken={token}
+        />
+        {/* <div style={{ position: 'absolute', left: 10 }}>
+            <NavigationControl />
+          </div> */}
+
+      </section>
+
 
 
 

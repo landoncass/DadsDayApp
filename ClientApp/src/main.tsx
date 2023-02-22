@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { App } from './App'
 import './index.scss'
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 const queryClient = new QueryClient()
 

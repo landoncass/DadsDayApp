@@ -10,6 +10,7 @@ import { SignIn } from './pages/login'
 import { getUser, isLoggedIn, logout } from './auth'
 import { LoggedInUser } from './types'
 
+
 function LoggedInNav() {
   const user = getUser()
   function handleLogout() {
