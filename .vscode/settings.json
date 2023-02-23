@@ -1,6 +1,7 @@
 {
   "prettier.enable": false,
   "cSpell.words": [
+    "CLOUDINARY",
     "dayout",
     "geocoder"
   ]

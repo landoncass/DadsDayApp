@@ -18,6 +18,8 @@ namespace DadsDayApp.Models
         [Required(ErrorMessage = "You must provide a review.")]
         public string Description { get; set; }
 
+        public string PhotoURL { get; set; }
+
         public List<Review> Reviews { get; set; }
 
         public int UserId { get; set; }

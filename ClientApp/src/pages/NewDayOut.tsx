@@ -2,7 +2,10 @@ import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { authHeader } from '../auth'
-import { APIError, DayOutType } from '../types'
+import { APIError, DayOutType, UploadResponse } from '../types'
+import { useDropzone } from 'react-dropzone'
+
+
 
 async function submitNewDayOut(dayOutToCreate: DayOutType) {
   const response = await fetch('/api/daysout', {
@@ -28,6 +31,9 @@ export function NewDayOut() {
     location: '',
     address: '',
     description: '',
+    latitude: NaN,
+    longitude: NaN,
+    photoUrl: '',
     reviews: [],
   })
 
@@ -58,6 +64,53 @@ export function NewDayOut() {
 
     setNewDayOut(updatedDayOut)
   }
+
+  function onDropFile(acceptedFiles: File[]) {
+    // Do something with the files
+    const fileToUpload = acceptedFiles[0]
+    console.log(fileToUpload)
+  }
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop: onDropFile,
+  })
+
+  async function uploadFile(fileToUpload: File) {
+    // Create a formData object so we can send this
+    // to the API that is expecting some form data.
+    const formData = new FormData()
+
+    // Append a field that is the form upload itself
+    formData.append('file', fileToUpload)
+
+    // Use fetch to send an authorization header and
+    // a body containing the form data with the file
+    const response = await fetch('/api/Uploads', {
+      method: 'POST',
+      headers: {
+        Authorization: authHeader(),
+      },
+      body: formData,
+    })
+
+    if (response.ok) {
+      return response.json()
+    } else {
+      throw 'Unable to upload image!'
+    }
+  }
+
+  const uploadFileMutation = useMutation(uploadFile, {
+    onSuccess: function (apiResponse: UploadResponse) {
+      const url = apiResponse.url
+
+      setNewDayOut({ ...newDayOut, photoURL: url })
+    },
+
+    onError: function (error: string) {
+      setErrorMessage(error)
+    },
+  })
 
   return (
     <div className="newDay">
@@ -113,11 +166,19 @@ export function NewDayOut() {
           <label className="label" htmlFor="picture">
             Picture
           </label>
-          <div className="control">
-            <input type="file" name="picture" />
+
+          <div className="file-drop-zone">
+            <div {...getRootProps()}>
+              <input {...getInputProps()} />
+              {isDragActive
+                ? 'Drop the files here ...'
+                : 'Drag a picture of the DayOut location here to upload!'}
+            </div>
           </div>
+
         </div>
         <br></br>
+
         <div className="field is-grouped">
           <div className="control">
             <button className="button is-link" >Submit</button>

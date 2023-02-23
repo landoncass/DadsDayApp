@@ -12,8 +12,12 @@ export type DayOutType = {
   description: string
   latitude: number
   longitude: number
+  photoURL: string
   reviews: ReviewType[]
-  
+}
+
+export type UploadResponse = {
+  url: string
 }
 
 export type APIError = {
@@ -25,9 +29,13 @@ export type APIError = {
 }
 
 const NullDayOut: DayOutType = {
+  id?: undefined,
   location: '',
   address: '',
   description: '',
+  latitude: NaN,
+  longitude: NaN, 
+  photoURL: ''
   
 }
 
