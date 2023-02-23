@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { DayOutType } from '../types'
 import { SingleDayOutFromList } from '../components/SingleDayOutFromList'
-import Map, { NavigationControl } from 'react-map-gl'
+import Map, { Marker, NavigationControl, Popup } from 'react-map-gl'
 
 export function AllDaysOut() {
   const token = import.meta.env.VITE_APP_MAPBOX_TOKEN as string
@@ -12,8 +12,11 @@ export function AllDaysOut() {
   const [viewport, setViewport] = useState({
     latitude: 27.77101804911986,
     longitude: -82.66090611749074,
-    zoom: 9.8,
+    zoom: 12,
   })
+  const [selectedMapDayOut, setSelectedMapDayOut] =
+    useState<DayOutType | null>(null)
+
   const { data: daysOut = [] } = useQuery<DayOutType[]>(
     ['daysOut', filterText],
     async function () {
@@ -47,26 +50,50 @@ export function AllDaysOut() {
       <section className="map">
         <Map
           initialViewState={viewport}
-          style={{ width: "100%", height: 200 }}
+          style={{ width: "100%", height: 300 }}
           mapStyle="mapbox://styles/mapbox/streets-v9"
           mapboxAccessToken={token}
-        />
-        {/* <div style={{ position: 'absolute', left: 10 }}>
-            <NavigationControl />
-          </div> */}
+        >
+          {
+            selectedMapDayOut ? (
+              <Popup
+                latitude={selectedMapDayOut.latitude}
+                longitude={selectedMapDayOut.longitude}
+                closeButton={true}
+                closeOnClick={false}
+                onClose={() => setSelectedMapDayOut(null)}
+                offsetTop={-5}
+              >
+                <div>
+                  <p>{selectedMapDayOut.location}</p>
+                  <p>{selectedMapDayOut.description}</p>
+                </div>
+              </Popup>
+            ) : null
+          }
 
-      </section>
+          {daysOut.map((dayOut) => (
 
+            <Marker key={dayOut.id}
+              longitude={dayOut.longitude}
+              latitude={dayOut.latitude}
+              onClick={() => setSelectedMapDayOut(dayOut)}>
+            </Marker>
 
+          )
+          )}
+        </Map>
+      </section >
 
+      <ul className="DaysOutList" >
+        {
+          daysOut.filter((item, index) => index < 6).map(function (dayOut) {
+            return <SingleDayOutFromList key={dayOut.id} dayOut={dayOut} />
+          })
+        }
+      </ul >
 
-      <ul className="DaysOutList">
-        {daysOut.map(function (dayOut) {
-          return <SingleDayOutFromList key={dayOut.id} dayOut={dayOut} />
-        })}
-      </ul>
-
-    </div>
+    </div >
 
   )
 }

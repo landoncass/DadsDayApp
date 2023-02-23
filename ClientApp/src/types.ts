@@ -10,7 +10,10 @@ export type DayOutType = {
   location: string
   address: string
   description: string
+  latitude: number
+  longitude: number
   reviews: ReviewType[]
+  
 }
 
 export type APIError = {
@@ -25,6 +28,7 @@ const NullDayOut: DayOutType = {
   location: '',
   address: '',
   description: '',
+  
 }
 
 export type ReviewType = {
