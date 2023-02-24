@@ -100,7 +100,11 @@ export function DayOut() {
     <div className="componentPage">
 
       <section className="section is-small has-background-light m-auto">
-
+        {
+          dayout.photoURL ? (
+            <img alt="DayOut Photo" width={200} src={dayout.photoURL} />
+          ) : null
+        }
         <h1 className="title is-1">
           {dayout.location}
           <br></br>
