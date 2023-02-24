@@ -31,9 +31,9 @@ export function NewDayOut() {
     location: '',
     address: '',
     description: '',
-    latitude: NaN,
-    longitude: NaN,
-    photoUrl: '',
+    latitude: 0,
+    longitude: 0,
+    photoURL: '',
     reviews: [],
   })
 
@@ -68,8 +68,14 @@ export function NewDayOut() {
   function onDropFile(acceptedFiles: File[]) {
     // Do something with the files
     const fileToUpload = acceptedFiles[0]
-    console.log(fileToUpload)
+    uploadFileMutation.mutate(fileToUpload)
+    setIsUploading(true)
   }
+
+
+  const [isUploading, setIsUploading] = useState(false)
+
+
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: onDropFile,
@@ -105,12 +111,26 @@ export function NewDayOut() {
       const url = apiResponse.url
 
       setNewDayOut({ ...newDayOut, photoURL: url })
+
     },
 
     onError: function (error: string) {
       setErrorMessage(error)
     },
+    onSettled: function () {
+      setIsUploading(false)
+    },
   })
+
+  let dropZoneMessage = 'Drag a picture of the DayOut location here to upload!'
+
+  if (isUploading) {
+    dropZoneMessage = 'Uploading...'
+  }
+
+  if (isDragActive) {
+    dropZoneMessage = 'Drop the files here ...'
+  }
 
   return (
     <div className="newDay">
@@ -166,13 +186,17 @@ export function NewDayOut() {
           <label className="label" htmlFor="picture">
             Picture
           </label>
-
+          {
+            newDayOut.photoURL ? (
+              <p>
+                <img alt="DayOut Photo" width={200} src={newDayOut.photoURL} />
+              </p>
+            ) : null
+          }
           <div className="file-drop-zone">
             <div {...getRootProps()}>
               <input {...getInputProps()} />
-              {isDragActive
-                ? 'Drop the files here ...'
-                : 'Drag a picture of the DayOut location here to upload!'}
+              {dropZoneMessage}
             </div>
           </div>
 

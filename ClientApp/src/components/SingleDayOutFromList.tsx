@@ -9,8 +9,14 @@ export function SingleDayOutFromList({ dayOut }: { dayOut: DayOutType }) {
   return (
     <li>
       <div className="card">
+        <div className="card-image">
+          <figure className="image is-2by2">
+            <img src={dayOut.photoURL} />
+          </figure>
+        </div>
         <div className="card-content">
-          <div className="content">
+          <div className="content"><p>
+          </p>
             <p>
               <strong>Where:</strong> <Link to={urlForShowingDayOut}>{dayOut.location}</Link>
             </p>
@@ -23,8 +29,9 @@ export function SingleDayOutFromList({ dayOut }: { dayOut: DayOutType }) {
             <p>
               <Stars dayOut={dayOut} />
               <strong>Reviews </strong> ({dayOut.reviews.length})
-
             </p>
+
+
 
           </div>
         </div>

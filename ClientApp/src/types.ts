@@ -12,7 +12,7 @@ export type DayOutType = {
   description: string
   latitude: number
   longitude: number
-  photoURL: string
+  photoURL: string                    
   reviews: ReviewType[]
 }
 
