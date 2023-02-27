@@ -87,7 +87,7 @@ export function AllDaysOut() {
 
       <ul className="DaysOutList" >
         {
-          daysOut.filter((item, index) => index < 6).map(function (dayOut) {
+          daysOut.map(function (dayOut) {
             return <SingleDayOutFromList key={dayOut.id} dayOut={dayOut} />
           })
         }

@@ -46,6 +46,23 @@ const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
 
 export function DayOut() {
 
+  async function handleDeleteReview(event, reviewId) {
+    event.preventDefault()
+
+    await fetch(`/api/Reviews/${reviewId}`, {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json', ...authHeader() },
+    })
+
+    const response = await fetch(`/api/Restaurants/${id}`)
+
+    if (response.ok) {
+      const apiData = await response.json()
+
+      setDayOut(apiData)
+    }
+  }
+
   let navigate = useNavigate()
   const user = getUser()
 
@@ -147,6 +164,7 @@ export function DayOut() {
                   <div className="content">
                     <h4 className="title is-4">
                       {review.summary}
+
                     </h4>
                     <p className="subtitle is-4">{review.body}</p>
                     <div className="meta">
@@ -154,11 +172,25 @@ export function DayOut() {
                         className="stars"
                         style={{ '--rating': review.stars } as CSSStarsProperties}
                         aria-label={`Star rating of this location is ${review.stars} out of 5.`}
-                      ></span></div>
+                      ></span>
+                    </div>
                     <br></br>
 
                     <p className="subtitle is-5"><a href={`mailto: ${review.user.email}`}>Posted by {review.user.fullName}</a> <time>{review.createdAt ? format(new Date(review.createdAt), dateFormat) : null}</time></p>
-
+                    {
+                      review.user.id === getUserId() ? (
+                        <div>
+                          <button
+                            className="small"
+                            onClick={function (event) {
+                              handleDeleteReview(event, review.id)
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      ) : null
+                    }
                   </div>
                 </div>
 
