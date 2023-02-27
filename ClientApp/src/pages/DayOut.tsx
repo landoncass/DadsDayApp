@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { CSSStarsProperties, DayOutType, NewReviewType } from '../types'
 import { NewDayOut } from './NewDayOut'
 import format from 'date-fns/format'
-import { authHeader, isLoggedIn } from '../auth'
+import { authHeader, getUser, getUserId, isLoggedIn } from '../auth'
 import { Stars } from '../components/Stars'
 
 
@@ -46,6 +46,21 @@ const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
 
 export function DayOut() {
 
+  let navigate = useNavigate()
+  const user = getUser()
+
+  async function handleDelete(event) {
+    event.preventDefault()
+
+    const response = await fetch(`/api/DaysOut/${id}`, {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json', ...authHeader() },
+    })
+
+    if (response.status === 200 || response.status === 204) {
+      navigate('/')
+    }
+  }
 
 
   const { id } = useParams<{ id: string }>()
@@ -102,7 +117,7 @@ export function DayOut() {
       <section className="section is-small has-background-light m-auto">
         {
           dayout.photoURL ? (
-            <img alt="DayOut Photo" width={200} src={dayout.photoURL} />
+            <img alt="DayOut Photo" width="50%" src={dayout.photoURL} />
           ) : null
         }
         <h1 className="title is-1">
@@ -116,6 +131,12 @@ export function DayOut() {
         <p className="title is-5">
           {dayout.description}
         </p>
+        <p>{
+          dayout.userId === getUserId() ? (
+            <button onClick={handleDelete}>Delete DayOut</button>
+          ) : null
+        }</p>
+        <br></br>
 
         <h2 className="title is-2">Reviews</h2>
         <ul className="reviews">
@@ -192,7 +213,6 @@ export function DayOut() {
             <br></br>
             <button>Submit Review</button>
           </form> </> : null}
-
       </section >
     </div >
   )

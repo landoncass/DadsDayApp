@@ -55,32 +55,31 @@ export function SignUp() {
     <div className="newDay">
       <div className="pageHeader">
         <h1 className="text-center">Sign Up</h1>
+        <form onSubmit={function (event) {
+          event.preventDefault()
+
+          createUserMutation.mutate(newUser)
+        }}>
+
+          {errorMessage ? <p className="form-error">{errorMessage}</p> : null}
+
+          <div className="field">
+            <label className="label" htmlFor="fullName">Name</label>
+            <input type="text" name="fullName" value={newUser.fullName} onChange={handleStringFieldChange} />
+          </div>
+          <div className="field">
+            <label className="label" htmlFor="name">Email</label>
+            <input type="email" name="email" value={newUser.email} onChange={handleStringFieldChange} />
+          </div>
+          <div className="field">
+            <label className="label" htmlFor="password">Password</label>
+            <input type="password" name="password" value={newUser.password} onChange={handleStringFieldChange} />
+          </div>
+          <p>
+            <input type="submit" value="Submit" />
+          </p>
+        </form>
       </div>
-
-      <form onSubmit={function (event) {
-        event.preventDefault()
-
-        createUserMutation.mutate(newUser)
-      }}>
-
-        {errorMessage ? <p className="form-error">{errorMessage}</p> : null}
-
-        <div className="field">
-          <label className="label" htmlFor="fullName">Name</label>
-          <input type="text" name="fullName" value={newUser.fullName} onChange={handleStringFieldChange} />
-        </div>
-        <div className="field">
-          <label className="label" htmlFor="name">Email</label>
-          <input type="email" name="email" value={newUser.email} onChange={handleStringFieldChange} />
-        </div>
-        <div className="field">
-          <label className="label" htmlFor="password">Password</label>
-          <input type="password" name="password" value={newUser.password} onChange={handleStringFieldChange} />
-        </div>
-        <p>
-          <input type="submit" value="Submit" />
-        </p>
-      </form>
     </div>
   )
 }

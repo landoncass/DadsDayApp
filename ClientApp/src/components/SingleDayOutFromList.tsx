@@ -7,7 +7,7 @@ import { Stars } from './Stars'
 export function SingleDayOutFromList({ dayOut }: { dayOut: DayOutType }) {
   const urlForShowingDayOut = `/daysout/${dayOut.id}`
   return (
-    <li>
+    <li key={dayOut.id}>
       <div className="card">
         <div className="card-image">
           <figure className="image is-2by2">
