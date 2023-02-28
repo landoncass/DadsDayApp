@@ -67,12 +67,15 @@ export function DayOut() {
   const user = getUser()
 
   async function handleDelete(event) {
-    event.preventDefault()
 
-    const response = await fetch(`/api/DaysOut/${id}`, {
+    const response = await fetch(`/api/daysout/${id}`, {
       method: 'DELETE',
-      headers: { 'content-type': 'application/json', ...authHeader() },
+      headers: {
+        'content-type': 'application/json',
+        Authorization: authHeader(),
+      },
     })
+
 
     if (response.status === 200 || response.status === 204) {
       navigate('/')
@@ -127,6 +130,14 @@ export function DayOut() {
 
   const averageStarsToOneDecimalPlace = Number(averageStars.toFixed(1))
 
+  const deleteDayOut = useMutation(handleDelete, {
+    onSuccess: function () {
+      navigate('/')
+    },
+    onError: function () {
+      console.log('Oops')
+    }
+  })
 
   return (
     <div className="componentPage">
