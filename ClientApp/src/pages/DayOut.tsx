@@ -7,9 +7,6 @@ import format from 'date-fns/format'
 import { authHeader, getUser, getUserId, isLoggedIn } from '../auth'
 import { Stars } from '../components/Stars'
 
-
-
-
 async function loadOneDayOut(id: string | undefined) {
   const response = await fetch(`/api/daysout/${id}`)
 
@@ -21,6 +18,7 @@ async function loadOneDayOut(id: string | undefined) {
 }
 
 async function submitNewReview(review: NewReviewType) {
+  event.preventDefault()
   const response = await fetch(`/api/Reviews`, {
     method: 'POST',
     headers: { 'content-type': 'application/json', Authorization: authHeader() },
@@ -51,10 +49,10 @@ export function DayOut() {
 
     await fetch(`/api/Reviews/${reviewId}`, {
       method: 'DELETE',
-      headers: { 'content-type': 'application/json', ...authHeader() },
+      headers: { 'content-type': 'application/json', Authorization: authHeader() },
     })
 
-    const response = await fetch(`/api/Restaurants/${id}`)
+    const response = await fetch(`/api/DaysOut/${id}`)
 
     if (response.ok) {
       const apiData = await response.json()
@@ -67,7 +65,6 @@ export function DayOut() {
   const user = getUser()
 
   async function handleDelete(event) {
-
     const response = await fetch(`/api/daysout/${id}`, {
       method: 'DELETE',
       headers: {
@@ -81,7 +78,6 @@ export function DayOut() {
       navigate('/')
     }
   }
-
 
   const { id } = useParams<{ id: string }>()
 
@@ -131,6 +127,15 @@ export function DayOut() {
   const averageStarsToOneDecimalPlace = Number(averageStars.toFixed(1))
 
   const deleteDayOut = useMutation(handleDelete, {
+    onSuccess: function () {
+      navigate('/')
+    },
+    onError: function () {
+      console.log('Oops')
+    }
+  })
+
+  const deleteDayOutReview = useMutation(handleDelete, {
     onSuccess: function () {
       navigate('/')
     },
