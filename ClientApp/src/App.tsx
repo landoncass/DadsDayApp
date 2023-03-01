@@ -10,6 +10,7 @@ import { SignIn } from './pages/login'
 import { getUser, isLoggedIn, logout } from './auth'
 import { LoggedInUser } from './types'
 import ScrollToTop from './components/ScrollToTop'
+import { EditDayOut } from './components/EditDayOut'
 
 
 function LoggedInNav() {
@@ -87,7 +88,7 @@ export function App() {
           <Route path="/daysout/:id" element={<DayOut />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
-
+          <Route path="/daysout/:id/edit" element={<EditDayOut />} />
         </Routes>
       </div>
       <footer>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { CSSStarsProperties, DayOutType, NewReviewType } from '../types'
 import { NewDayOut } from './NewDayOut'
 import format from 'date-fns/format'
@@ -54,7 +54,7 @@ export function DayOut() {
       method: 'DELETE',
       headers: { 'content-type': 'application/json', Authorization: authHeader() },
     })
-    console.log("post delete")
+
     const response = await fetch(`/api/DaysOut/${id}`)
 
     if (response.ok) {
@@ -162,6 +162,11 @@ export function DayOut() {
         <p className="title is-5">
           {dayout.description}
         </p>
+        <p>
+          {isLoggedIn() && dayout.userId === getUserId() ? (
+            <Link className="button" to={`/daysout/${id}/edit`}>Edit</Link>
+          ) : null}
+        </p>
         <p>{
           dayout.userId === getUserId() ? (
             <button onClick={handleDelete}>Delete DayOut</button>
@@ -207,13 +212,11 @@ export function DayOut() {
                     }
                   </div>
                 </div>
-
               </article>
             </div>
           )
           }
         </ul >
-
         {isLoggedIn() ? <>
           <br></br>
           <h3 className="title is-2">Enter your own review</h3>
