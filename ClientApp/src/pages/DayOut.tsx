@@ -44,6 +44,9 @@ const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
 
 export function DayOut() {
 
+  let navigate = useNavigate()
+  const user = getUser()
+
   async function handleDeleteReview(event, reviewId) {
     event.preventDefault()
 
@@ -51,18 +54,13 @@ export function DayOut() {
       method: 'DELETE',
       headers: { 'content-type': 'application/json', Authorization: authHeader() },
     })
-
+    console.log("post delete")
     const response = await fetch(`/api/DaysOut/${id}`)
 
     if (response.ok) {
-      const apiData = await response.json()
-
-      setDayOut(apiData)
+      reloadDayOut()
     }
   }
-
-  let navigate = useNavigate()
-  const user = getUser()
 
   async function handleDelete(event) {
     const response = await fetch(`/api/daysout/${id}`, {

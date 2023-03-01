@@ -24,7 +24,6 @@ export function SingleDayOutFromList({ dayOut }: { dayOut: DayOutType }) {
           </div>
           <div className="content"><p>
           </p>
-
             <p>
               <strong>Address:</strong> {dayOut.address}
             </p>
@@ -35,9 +34,6 @@ export function SingleDayOutFromList({ dayOut }: { dayOut: DayOutType }) {
               <Stars dayOut={dayOut} />
               <strong>Reviews </strong> ({dayOut.reviews.length})
             </p>
-
-
-
           </div>
         </div>
       </div>

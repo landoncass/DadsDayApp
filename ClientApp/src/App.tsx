@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AllDaysOut } from './pages/AllDaysOut'
 import logo2 from './images/Logo2.png'
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import { PersonalDayOut } from './pages/PersonalDayOut'
 import { NewDayOut } from './pages/NewDayOut'
 import { DayOut } from './pages/DayOut'
@@ -9,6 +9,7 @@ import { SignUp } from './pages/signup'
 import { SignIn } from './pages/login'
 import { getUser, isLoggedIn, logout } from './auth'
 import { LoggedInUser } from './types'
+import ScrollToTop from './components/ScrollToTop'
 
 
 function LoggedInNav() {
@@ -56,6 +57,12 @@ function SignedOutNav() {
 }
 export function App() {
 
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <div>
       <header>
@@ -72,6 +79,7 @@ export function App() {
         </div>
       </nav>
       <div className="componentView">
+
         <Routes>
           <Route index element={<AllDaysOut />} />
           <Route path="personal" element={<PersonalDayOut />} />
