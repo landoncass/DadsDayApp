@@ -30,7 +30,7 @@ body {
 
 .DaysOutList {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
@@ -38,9 +38,11 @@ body {
   
 }
 
+
+
 .DaysOutList > * {
   width: 100%;
- }
+}
 
 .navbar-burger {
   color: white;
@@ -99,6 +101,13 @@ header {
   margin: 0px 4rem;
   padding: 4rem 4rem;
   max-width: 240rem;
+}
+
+@media screen and (max-width: 600px) {
+  .componentPage {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 footer {

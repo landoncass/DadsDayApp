@@ -146,11 +146,7 @@ export function DayOut() {
     <div className="componentPage">
 
       <section className="section is-small has-background-light m-auto">
-        {
-          dayout.photoURL ? (
-            <img alt="DayOut Photo" width="50%" src={dayout.photoURL} />
-          ) : null
-        }
+
         <h1 className="title is-1">
           {dayout.location}
           <br></br>
@@ -162,16 +158,21 @@ export function DayOut() {
         <p className="title is-5">
           {dayout.description}
         </p>
-        <p>
-          {isLoggedIn() && dayout.userId === getUserId() ? (
-            <Link className="button" to={`/daysout/${id}/edit`}>Edit</Link>
-          ) : null}
-        </p>
-        <p>{
-          dayout.userId === getUserId() ? (
-            <button onClick={handleDelete}>Delete DayOut</button>
+        {
+          dayout.photoURL ? (
+            <img alt="DayOut Photo" width="50%" src={dayout.photoURL} />
           ) : null
-        }</p>
+        }
+        <p>
+
+        </p>
+        <p>{isLoggedIn() && dayout.userId === getUserId() ? (
+          <Link className="button" to={`/daysout/${id}/edit`}>Edit DayOut</Link>
+        ) : null}{
+            dayout.userId === getUserId() ? (
+              <Link to=""><button onClick={handleDelete}>Delete DayOut</button></Link>
+            ) : null
+          }</p>
         <br></br>
 
         <h2 className="title is-2">Reviews</h2>
