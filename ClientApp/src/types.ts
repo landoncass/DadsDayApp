@@ -28,17 +28,6 @@ export type APIError = {
   type: string
 }
 
-const NullDayOut: DayOutType = {
-  id?: undefined,
-  location: '',
-  address: '',
-  description: '',
-  latitude: NaN,
-  longitude: NaN, 
-  photoURL: ''
-  
-}
-
 export type ReviewType = {
   id: number | undefined
   summary: string
@@ -73,11 +62,12 @@ export type LoginUserType = {
   password: string
 }
 
-export type LoggedInUser {
+export type LoggedInUser = {
   id: number
-    fullName: string
-    email: string
+  fullName: string
+  email: string
 }
+
 export type LoginSuccess = {
   token: string
   user: LoggedInUser
