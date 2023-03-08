@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
-import { NewUserType } from '../types'
+import { NewUserType, APIError } from '../types'
 
 async function submitNewUser(newUser: NewUserType) {
   const response = await fetch('/api/Users', {

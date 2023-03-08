@@ -62,7 +62,6 @@ export function AllDaysOut() {
                 closeButton={true}
                 closeOnClick={false}
                 onClose={() => setSelectedMapDayOut(null)}
-                offsetTop={-5}
               >
                 <div>
                   <p>{selectedMapDayOut.location}</p>

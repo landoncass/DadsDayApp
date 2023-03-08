@@ -43,7 +43,7 @@ export function EditDayOut() {
     onDrop: onDropFile,
   })
 
-  function handleStringFieldChange(event) {
+  function handleStringFieldChange(event: HTMLInputElement) {
     const value = event.target.value
     const fieldName = event.target.name
 

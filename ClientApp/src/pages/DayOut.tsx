@@ -17,7 +17,7 @@ async function loadOneDayOut(id: string | undefined) {
   }
 }
 
-async function submitNewReview(review: NewReviewType) {
+async function submitNewReview(event: SubmitEvent, review: NewReviewType) {
   event.preventDefault()
   const response = await fetch(`/api/Reviews`, {
     method: 'POST',
@@ -36,8 +36,10 @@ const NullDayOut: DayOutType = {
   location: '',
   address: '',
   description: '',
-
+  latitude: NaN,
+  longitude: NaN,
   reviews: [],
+  photoURL: ''
 }
 
 const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
@@ -47,7 +49,7 @@ export function DayOut() {
   let navigate = useNavigate()
   const user = getUser()
 
-  async function handleDeleteReview(event, reviewId) {
+  async function handleDeleteReview(event: any, reviewId: number) {
     event.preventDefault()
 
     await fetch(`/api/Reviews/${reviewId}`, {
@@ -62,7 +64,7 @@ export function DayOut() {
     }
   }
 
-  async function handleDelete(event) {
+  async function handleDelete(event: HTMLButtonElement) {
     const response = await fetch(`/api/daysout/${id}`, {
       method: 'DELETE',
       headers: {
@@ -166,10 +168,10 @@ export function DayOut() {
         <p>
 
         </p>
-        <p>{isLoggedIn() && dayout.userId === getUserId() ? (
+        <p>{isLoggedIn() && dayout.user.id === getUserId() ? (
           <Link className="button" to={`/daysout/${id}/edit`}>Edit DayOut</Link>
         ) : null}{
-            dayout.userId === getUserId() ? (
+            dayout.user.id === getUserId() ? (
               <Link to=""><button onClick={handleDelete}>Delete DayOut</button></Link>
             ) : null
           }</p>

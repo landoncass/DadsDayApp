@@ -14,6 +14,11 @@ export type DayOutType = {
   longitude: number
   photoURL: string                    
   reviews: ReviewType[]
+  user: {
+    id: number
+    fullName: string
+    email: string
+  }
 }
 
 export type UploadResponse = {

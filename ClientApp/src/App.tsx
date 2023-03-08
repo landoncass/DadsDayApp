@@ -9,7 +9,6 @@ import { SignUp } from './pages/signup'
 import { SignIn } from './pages/login'
 import { getUser, isLoggedIn, logout } from './auth'
 import { LoggedInUser } from './types'
-import ScrollToTop from './components/ScrollToTop'
 import { EditDayOut } from './components/EditDayOut'
 
 
