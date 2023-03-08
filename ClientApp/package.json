@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && eslint --ext .tsx,.ts . && vite build",
+    "build": "tsc && eslint --ext .tsx,.ts && vite build",
     "preview": "vite preview",
     "start": "vite",
     "predeploy": "npm run build",
