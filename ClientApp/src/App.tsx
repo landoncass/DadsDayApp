@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { AllDaysOut } from './pages/AllDaysOut'
-import logo2 from './images/Logo2.png'
+import logo2 from './images/logo2.png'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import { PersonalDayOut } from './pages/PersonalDayOut'
 import { NewDayOut } from './pages/NewDayOut'
