@@ -27,7 +27,7 @@ export function EditDayOut() {
 
   const [isUploading, setIsUploading] = useState(false)
 
-  const [errorMessage, setErrorMessage] = useState()
+  const [errorMessage, setErrorMessage] = useState('')
 
   const [dayOut, setDayOut] = useState({
     id: undefined,
@@ -43,16 +43,16 @@ export function EditDayOut() {
     onDrop: onDropFile,
   })
 
-  function handleStringFieldChange(event: HTMLInputElement) {
-    const value = event.target.value
-    const fieldName = event.target.name
+  function handleStringFieldChange(event: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement>) {
+    const value = event.currentTarget.value
+    const fieldName = event.currentTarget.name
 
     const updatedDayOut = { ...dayOut, [fieldName]: value }
 
     setDayOut(updatedDayOut)
   }
 
-  async function handleFormSubmit(event) {
+  async function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
     const response = await fetch(`/api/daysout/${id}`, {
@@ -74,7 +74,7 @@ export function EditDayOut() {
     }
   }
 
-  async function onDropFile(acceptedFiles) {
+  async function onDropFile(acceptedFiles: File[]) {
     // Do something with the files
     const fileToUpload = acceptedFiles[0]
     console.log(fileToUpload)

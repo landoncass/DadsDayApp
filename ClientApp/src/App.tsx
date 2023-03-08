@@ -66,7 +66,7 @@ export function App() {
   return (
     <div>
       <header>
-        <img src={logo2} height="auto" align="center" />
+        <img src={logo2} height="auto" />
       </header>
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">

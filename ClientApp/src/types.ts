@@ -14,11 +14,7 @@ export type DayOutType = {
   longitude: number
   photoURL: string                    
   reviews: ReviewType[]
-  user: {
-    id: number
-    fullName: string
-    email: string
-  }
+  user?: LoggedInUser
 }
 
 export type UploadResponse = {
@@ -33,19 +29,18 @@ export type APIError = {
   type: string
 }
 
+
 export type ReviewType = {
-  id: number | undefined
+  id: number 
   summary: string
   body: string
   stars: number
   createdAt: Date
   dayOutId: number
-  user: {
-    id: number
-    fullName: string
-    email: string
-  }
+  user?: LoggedInUser
 }
+
+
 
 export type NewReviewType = {
   id: number | undefined

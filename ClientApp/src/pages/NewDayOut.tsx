@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
-import { authHeader } from '../auth'
+import { authHeader, isLoggedIn, getUser } from '../auth'
 import { APIError, DayOutType, UploadResponse } from '../types'
 import { useDropzone } from 'react-dropzone'
+
 
 
 
@@ -35,6 +36,7 @@ export function NewDayOut() {
     longitude: 0,
     photoURL: '',
     reviews: [],
+    user: getUser()
   })
 
   const [errorMessage, setErrorMessage] = useState('')

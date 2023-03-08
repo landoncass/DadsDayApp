@@ -17,8 +17,7 @@ async function loadOneDayOut(id: string | undefined) {
   }
 }
 
-async function submitNewReview(event: SubmitEvent, review: NewReviewType) {
-  event.preventDefault()
+async function submitNewReview(review: NewReviewType) {
   const response = await fetch(`/api/Reviews`, {
     method: 'POST',
     headers: { 'content-type': 'application/json', Authorization: authHeader() },
@@ -39,7 +38,7 @@ const NullDayOut: DayOutType = {
   latitude: NaN,
   longitude: NaN,
   reviews: [],
-  photoURL: ''
+  photoURL: '',
 }
 
 const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
@@ -64,7 +63,7 @@ export function DayOut() {
     }
   }
 
-  async function handleDelete(event: HTMLButtonElement) {
+  async function handleDelete() {
     const response = await fetch(`/api/daysout/${id}`, {
       method: 'DELETE',
       headers: {
@@ -168,10 +167,10 @@ export function DayOut() {
         <p>
 
         </p>
-        <p>{isLoggedIn() && dayout.user.id === getUserId() ? (
+        <p>{isLoggedIn() && dayout?.user?.id === getUserId() ? (
           <Link className="button" to={`/daysout/${id}/edit`}>Edit DayOut</Link>
         ) : null}{
-            dayout.user.id === getUserId() ? (
+            dayout?.user?.id === getUserId() ? (
               <Link to=""><button onClick={handleDelete}>Delete DayOut</button></Link>
             ) : null
           }</p>
@@ -197,22 +196,23 @@ export function DayOut() {
                       ></span>
                     </div>
                     <br></br>
+                    {review && review.user && <>
+                      <p className="subtitle is-5"><a href={`mailto: ${review.user.email}`}>Posted by {review.user.fullName}</a> <time>{review.createdAt ? format(new Date(review.createdAt), dateFormat) : null}</time></p>
 
-                    <p className="subtitle is-5"><a href={`mailto: ${review.user.email}`}>Posted by {review.user.fullName}</a> <time>{review.createdAt ? format(new Date(review.createdAt), dateFormat) : null}</time></p>
-                    {
-                      review.user.id === getUserId() ? (
-                        <div>
-                          <button
-                            className="small"
-                            onClick={function (event) {
-                              handleDeleteReview(event, review.id)
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      ) : null
-                    }
+                      {
+                        review.user.id === getUserId() ? (
+                          <div>
+                            <button
+                              className="small"
+                              onClick={function (event) {
+                                handleDeleteReview(event, review.id)
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        ) : null
+                      }</>}
                   </div>
                 </div>
               </article>
