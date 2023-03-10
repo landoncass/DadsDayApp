@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
-import { authHeader, isLoggedIn, getUser } from '../auth'
+import { authHeader, getUser } from '../auth'
 import { APIError, DayOutType, UploadResponse } from '../types'
 import { useDropzone } from 'react-dropzone'
-
-
-
 
 async function submitNewDayOut(dayOutToCreate: DayOutType) {
   const response = await fetch('/api/daysout', {
@@ -24,6 +21,7 @@ async function submitNewDayOut(dayOutToCreate: DayOutType) {
     throw await response.json()
   }
 }
+
 export function NewDayOut() {
   let navigate = useNavigate()
 
@@ -36,7 +34,6 @@ export function NewDayOut() {
     longitude: 0,
     photoURL: '',
     reviews: [],
-    user: getUser()
   })
 
   const [errorMessage, setErrorMessage] = useState('')
