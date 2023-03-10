@@ -33,7 +33,7 @@ export function AllDaysOut() {
   return (
     <div className="componentPage">
       <div className="pageHeader">
-        <h1 className="has-text-centered is-size-3">What will you take your kid today?</h1>
+        <h1 className="has-text-centered is-size-3">Where will you take your kid today?</h1>
         <h1 className="has-text-centered is-size-3"> Create your own Day Out or take a look at what other Dads have done below</h1>
         <br />
 
