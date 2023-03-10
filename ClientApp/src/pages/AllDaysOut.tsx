@@ -33,13 +33,14 @@ export function AllDaysOut() {
   return (
     <div className="componentPage">
       <div className="pageHeader">
-        <h1 className="has-text-centered is-size-1">Here are some places Dads have gone recently:</h1>
+        <h1 className="has-text-centered is-size-3">What will you take your kid today?</h1>
+        <h1 className="has-text-centered is-size-3"> Create your own Day Out or take a look at what other Dads have done below</h1>
         <br />
 
         <input
           className="input is-large input is-rounded"
           type="text"
-          placeholder="Search"
+          placeholder="Search for a Day Out"
           value={filterText}
           onChange={function (event) {
             setFilterText(event.target.value)
