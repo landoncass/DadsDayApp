@@ -1,10 +1,10 @@
+/* eslint-disable react/jsx-key */
 import React, { useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { CSSStarsProperties, DayOutType, NewReviewType } from '../types'
-import { NewDayOut } from './NewDayOut'
 import format from 'date-fns/format'
-import { authHeader, getUser, getUserId, isLoggedIn } from '../auth'
+import { authHeader, getUserId, isLoggedIn } from '../auth'
 import { Stars } from '../components/Stars'
 
 async function loadOneDayOut(id: string | undefined) {
@@ -46,7 +46,6 @@ const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
 export function DayOut() {
 
   let navigate = useNavigate()
-  const user = getUser()
 
   async function handleDeleteReview(event: any, reviewId: number) {
     event.preventDefault()
