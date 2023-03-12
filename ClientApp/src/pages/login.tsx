@@ -47,35 +47,33 @@ export function SignIn() {
   })
 
   return (
-    <div className="newDay">
-      <div className="pageHeader">
-        <h1 className="text-center">Sign In</h1>
+    <div className="componentPage">
+      <h1 className="title is-1">Sign In</h1>
 
 
-        <form
+      <form
 
-          onSubmit={function (event) {
-            event.preventDefault()
-            loginUserMutation.mutate(user)
-          }}
-        >
-          {
-            errorMessage ? <p className='form-error'>{errorMessage}</p> : null
-          }
+        onSubmit={function (event) {
+          event.preventDefault()
+          loginUserMutation.mutate(user)
+        }}
+      >
+        {
+          errorMessage ? <p className='form-error'>{errorMessage}</p> : null
+        }
 
-          <div className="field">
-            <label className="label" htmlFor="email">Email</label>
-            <input type="email" name="email" value={user.email} onChange={handleStringFieldChange} />
-          </div>
-          <p className="field">
-            <label className="label" htmlFor="password">Password</label>
-            <input type="password" name="password" value={user.password} onChange={handleStringFieldChange} />
-          </p>
-          <p>
-            <input type="submit" value="Submit" />
-          </p>
-        </form>
-      </div >
+        <div className="field">
+          <label className="label" htmlFor="email">Email</label>
+          <input type="email" name="email" value={user.email} onChange={handleStringFieldChange} />
+        </div>
+        <p className="field">
+          <label className="label" htmlFor="password">Password</label>
+          <input type="password" name="password" value={user.password} onChange={handleStringFieldChange} />
+        </p>
+        <p>
+          <input type="submit" value="Submit" />
+        </p>
+      </form>
     </div>
   )
 }
