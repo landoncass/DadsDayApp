@@ -34,7 +34,7 @@ export function AllDaysOut() {
     <div className="componentPage">
       <div className="pageHeader">
         <h1 className="has-text-centered is-size-2">Plan a Dad's Day Out with your kid</h1>
-        <h1 className="has-text-centered is-size-4"> Create your own Day Out location or take a look at where other Dads have gone</h1>
+        <h1 className="has-text-centered is-size-4"> Look at where other Dads have gone with their kids, or sign up and create a Day Out of your own</h1>
         <br />
 
         <input

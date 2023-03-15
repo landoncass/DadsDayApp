@@ -11,7 +11,7 @@ export function SingleDayOutFromList({ dayOut }: { dayOut: DayOutType }) {
       <div className="column">
         <div className="card card-equal-height">
           <div className="card-image">
-            <figure className="image is-2by2">
+            <figure className="image is-4by3">
               <img src={dayOut.photoURL} />
             </figure>
           </div>
